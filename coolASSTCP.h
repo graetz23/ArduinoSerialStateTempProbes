@@ -55,6 +55,11 @@ public:
    */
   virtual ~ASSTCP( void );
 
+  /*!
+   * \brief Call this to set your base conditions
+   */
+  void setup( void );
+
 private:
 
   /*!

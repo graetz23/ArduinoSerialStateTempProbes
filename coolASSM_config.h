@@ -123,6 +123,13 @@ public:
    */
   String mark_as_Command( String command );
 
+  /*!
+   * \brief converts a double to a String
+   * \param the double value
+   * \return the correspoding string; e.g. "16.84"
+   */
+   String d2str( double d );
+
 private: // some stuff that's not so interesting
 
   const char _markerHead = '<';
@@ -132,7 +139,7 @@ private: // some stuff that's not so interesting
 
   /*!
    * \brief converts a char array into an integer
-   * \param the cahr array keeping a one or more digit number
+   * \param the char array keeping a one or more digit number
    * \return the correspoding integer
    */
   int a2i( const char* s );

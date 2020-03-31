@@ -30,8 +30,13 @@
  */
 #include <Arduino.h>
 #include <Servo.h>
+#include <Wire.h>
+#include <SPI.h>
+#include <LiquidCrystal_I2C.h>
 
 #include "./coolASSTCP.h" // base class header file
+
+LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 ASSTCP::ASSTCP( void ) {
   //_state = ASSM_STATE_IDLE; // initial STATE is IDLE due to not reacting
@@ -46,6 +51,21 @@ ASSTCP::~ASSTCP( void ) {
 
 // here you can add your code or
 // overload the class and next the methods
+
+void ASSTCP::setup( void ) {
+
+  // initialize the lcd for testing ..
+  lcd.init();
+  lcd.backlight();
+  lcd.home( ); // same as lcd.setCursor(0,0);
+  lcd.print("setup ..");
+  delay(500);
+  lcd.clear( ); // clear lcd display
+  lcd.home( ); // same as lcd.setCursor(0,0);
+
+  Serial.begin( SERIAL_BAUD ); // set up serial
+  delay(10); // 10 ms
+} // method
 
 uint8_t ASSTCP::error( uint8_t command ) {
 
@@ -66,6 +86,26 @@ uint8_t ASSTCP::idle( uint8_t command ) {
   double probeA0 = _atcp->readNTCProbe( 0 );
   double tempA0 = _atcp->readNTCProbe_Celsius( 0 );
 
+  lcd.home( ); // same as lcd.setCursor(0,0);
+
+  // double probeA0 = atcp.readNTCProbe( 0 );
+  lcd.print("probe A0: ");
+  lcd.print( probeA0 ); // TODO read and set tempearture of A0
+  lcd.setCursor( 0, 1 ); // same as lcd.setCursor(0,0);
+  // double tempA0 = atcp.readNTCProbe_Celsius( 0 );
+  lcd.print("temp  A0: ");
+  lcd.print( tempA0 ); // TODO read and set tempearture of A1
+
+  String tempA0_str = _helper->d2str( tempA0 );
+
+  writeCommand( "A0" );
+  writeData( tempA0_str );
+  writeCommand( "/A0" );
+
+  // at the end arduino sends a DONE command
+  writeCommand( ASSM_CMD_DONE );
+
+
   return next_command;
 
 } // method
@@ -75,43 +115,6 @@ uint8_t ASSTCP::running( uint8_t command ) {
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
 
   // TODO Place your code for RUNNING STATE or EXTEND CLASS and OVERLOAD method
-
-  /// some easy example for a fake sensor / data Processing
-  if( ASSM_DEBUG_SHOW_RUNNING_INTERNAL ) {
-    display( "RUNNING ->" );
-    delay(ASSM_DEBUG_DISPLAY_SHOW);
-    display( _helper->state_to_String( _state ) );
-    delay(ASSM_DEBUG_DISPLAY_SHOW);
-    display( _helper->command_to_String( _command ) );
-    delay(ASSM_DEBUG_DISPLAY_SHOW);
-    display( "" );
-    delay(ASSM_DEBUG_DISPLAY_BLANK);
-  } // if
-
-  // if arduino is in runnig state and client sends
-  // EVENT as command, arduino responds with three
-  // WAIT commands to simulate a sensor requesting
-  if( command == ASSM_CMD_EVENT ) {
-
-    int cnt = 0;
-    while( cnt < 3 ) {
-      // write a <WAIT> command
-      writeCommand( ASSM_CMD_WAIT );
-      cnt++;
-      delay( 1000 ); // wait a second
-    } // loop
-
-    // afterwards arduino responds with an UNIQUE
-    // command, writes the data back to the client by:
-    // <DATA>1;2;3;4;5;6;7;8;9;0</DATA>
-    writeCommand( "DATA" );
-    writeData( "1;2;3;4;5;6;7;8;9;0" );
-    writeCommand( "/DATA" );
-
-    // at the end arduino sends a DONE command
-    writeCommand( ASSM_CMD_DONE );
-
-  } // if
 
   return next_command;
 
