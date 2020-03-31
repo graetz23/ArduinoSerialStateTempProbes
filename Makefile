@@ -1,5 +1,5 @@
 #
-# Arduino Make file. Refer to https://github.com/sudar/Arduino-Makefile
+# Arduino Makefile; refer to https://github.com/sudar/Arduino-Makefile
 #
 # Christian
 # graetz23@gmail.com

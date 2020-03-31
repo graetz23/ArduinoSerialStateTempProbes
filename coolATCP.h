@@ -75,11 +75,6 @@ public:
   ATCP( void );
 
   /*!
-   * \brief Constructor to set resistor value and the analog resolution.
-   */
-  ATCP( double resistorValue = 10000, double analogResolution = 1023);
-
-  /*!
    * \brief Destructor
    */
   ~ATCP( void );

@@ -36,11 +36,6 @@ ATCP::ATCP( void ) {
   _cnst_resolution = 1023;
 } // method
 
-ATCP::ATCP( double resistorValue, double analogResolution ) {
-  _cnst_resistance_probe = resistorValue; // TODO set this to your type of probe
-  _cnst_resolution = analogResolution; // TODO set this to your kind of analog resolution
-} // method
-
 ATCP::~ATCP( void ) {
 } // method
 

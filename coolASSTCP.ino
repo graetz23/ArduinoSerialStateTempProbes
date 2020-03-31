@@ -33,28 +33,49 @@
 #include <SPI.h>
 #include <LiquidCrystal_I2C.h>
 
-#include "./coolASSM.h" // cool arduino serial state machine
-#include "./coolATCP.h" // cool arduino temperature cable probes
+//#include "./coolASSM.h" // cool arduino serial state machine
+#include "./coolASSTCP.h" // cool arduino serial state machine
+//#include "./coolATCP.h" // cool arduino temperature cable probes
 
 LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
+#define POWER 7 // arduino's built-in LED
+
+ASSTCP asstcp; // serial state machine object
+ATCP atcp;  // temp cable probe object
+
 void setup( ) {
-  lcd.init();                      // initialize the lcd
+  pinMode(POWER, OUTPUT); // arduino's built-in LED
+  digitalWrite(POWER, HIGH); // sets the digital pin LED on
+  // initialize the lcd for testing ..
+  lcd.init();
   lcd.backlight();
   lcd.home( ); // same as lcd.setCursor(0,0);
   lcd.print("setup ..");
   delay(500);
   lcd.clear( ); // clear lcd display
   lcd.home( ); // same as lcd.setCursor(0,0);
-  Serial.begin(9600);
+
+  // initialize the serial state machine
+  asstcp.setup( );
+
+  // initialize the temp cable probe
+  atcp.setup( );
+
 } // method
 
 void loop( ) {
   lcd.home( ); // same as lcd.setCursor(0,0);
-  lcd.print("temp A0: ");
-  lcd.print( 12.34 ); // TODO read and set tempearture of A0
+
+  double probeA0 = atcp.readNTCProbe( 0 );
+  lcd.print("probe A0: ");
+  lcd.print( probeA0 ); // TODO read and set tempearture of A0
   lcd.setCursor( 0, 1 ); // same as lcd.setCursor(0,0);
-  lcd.print("temp A1: ");
-  lcd.print( 56.78 ); // TODO read and set tempearture of A1
-  delay( 100 ); // 10 ms
+  double tempA0 = atcp.readNTCProbe_Celsius( 0 );
+  lcd.print("temp  A0: ");
+  lcd.print( tempA0 ); // TODO read and set tempearture of A1
+
+  asstcp.loop( ); // loop serial state machine reading and sending values
+
+  delay( 10 ); // 10 ms
 } // method
