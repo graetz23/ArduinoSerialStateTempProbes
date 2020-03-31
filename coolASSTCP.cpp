@@ -67,11 +67,33 @@ void ASSTCP::setup( void ) {
   delay(10); // 10 ms
 } // method
 
+void ASSTCP::displayProbe( int id ) {
+  double probeA0 = _atcp->readNTCProbe( id );
+  double tempA0 = _atcp->readNTCProbe_Celsius( id );
+  lcd.home( ); // same as lcd.setCursor(0,0);
+  lcd.print("probe A0: ");
+  lcd.print( probeA0 );
+  lcd.setCursor( 0, 1 ); // set cursor second line
+  lcd.print("temp  A0: ");
+  lcd.print( tempA0 );
+} // method
+
+void ASSTCP::displayError( ) {
+  lcd.clear( ); // same as lcd.setCursor(0,0);
+  lcd.home( ); // same as lcd.setCursor(0,0);
+  lcd.print("error state!");
+  lcd.setCursor( 0, 1 ); // set cursor second line
+  double probeA0 = _atcp->readNTCProbe( 0 );
+  lcd.print("try A0: ");
+  lcd.print( probeA0 );
+} // method
+
 uint8_t ASSTCP::error( uint8_t command ) {
 
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
 
-  // TODO Place your code for ERROR STATE or EXTEND CLASS and OVERLOAD method
+  displayError( ); // while error show error and try A0
+  delay( 100 );
 
   return next_command;
 
@@ -83,28 +105,7 @@ uint8_t ASSTCP::idle( uint8_t command ) {
 
   // TODO Place your code for IDLE STATE or EXTEND CLASS and OVERLOAD method
 
-  double probeA0 = _atcp->readNTCProbe( 0 );
-  double tempA0 = _atcp->readNTCProbe_Celsius( 0 );
-
-  lcd.home( ); // same as lcd.setCursor(0,0);
-
-  // double probeA0 = atcp.readNTCProbe( 0 );
-  lcd.print("probe A0: ");
-  lcd.print( probeA0 ); // TODO read and set tempearture of A0
-  lcd.setCursor( 0, 1 ); // same as lcd.setCursor(0,0);
-  // double tempA0 = atcp.readNTCProbe_Celsius( 0 );
-  lcd.print("temp  A0: ");
-  lcd.print( tempA0 ); // TODO read and set tempearture of A1
-
-  String tempA0_str = _helper->d2str( tempA0 );
-
-  writeCommand( "A0" );
-  writeData( tempA0_str );
-  writeCommand( "/A0" );
-
-  // at the end arduino sends a DONE command
-  writeCommand( ASSM_CMD_DONE );
-
+  displayProbe( 0 ); // while idle
 
   return next_command;
 
@@ -115,6 +116,47 @@ uint8_t ASSTCP::running( uint8_t command ) {
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
 
   // TODO Place your code for RUNNING STATE or EXTEND CLASS and OVERLOAD method
+
+  double temp = 0.0;
+
+  if( command == 70 ) {
+    displayProbe( 0 ); // while running
+    temp = _atcp->readNTCProbe_Celsius( 0 );
+    writeCommand( "A0" );
+    writeData( temp );
+    writeCommand( "/A0" );
+  } else if( command == 71 ) {
+    displayProbe( 1 ); // while running
+    temp = _atcp->readNTCProbe_Celsius( 1 );
+    writeCommand( "A1" );
+    writeData( temp );
+    writeCommand( "/A1" );
+  } else if( command == 72 ) {
+    displayProbe( 2 ); // while running
+    temp = _atcp->readNTCProbe_Celsius( 2 );
+    writeCommand( "A2" );
+    writeData( temp );
+    writeCommand( "/A2" );
+  } else if( command == 73 ) {
+    displayProbe( 3 ); // while running
+    temp = _atcp->readNTCProbe_Celsius( 3 );
+    writeCommand( "A3" );
+    writeData( temp );
+    writeCommand( "/A3" );
+  } else if( command == 74 ) {
+    displayProbe( 4 ); // while running
+    temp = _atcp->readNTCProbe_Celsius( 4 );
+    writeCommand( "A4" );
+    writeData( temp );
+    writeCommand( "/A4" );
+  } else if( command == 75 ) {
+    displayProbe( 5 ); // while running
+    temp = _atcp->readNTCProbe_Celsius( 5 );
+    writeCommand( "A5" );
+    writeData( temp );
+    writeCommand( "/A5" );
+  } else {
+  } // if
 
   return next_command;
 

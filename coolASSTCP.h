@@ -79,6 +79,20 @@ private:
 
   ATCP* _atcp; // cable temperature probe pointer
 
+  // some extra for visualization via I2C 20x2 LCD
+
+  /*!
+   * \brief display probe value and celsius by given ID
+   * on some I2C 20x2 LCD display ..
+   */
+  void displayProbe( int id );
+
+  /*!
+   * \brief display error message while in error state
+   * on some I2C 20x2 LCD display ..
+   */
+  void displayError( ); // while error
+
 }; // class
 
 #endif

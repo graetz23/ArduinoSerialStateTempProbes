@@ -33,29 +33,27 @@
 #include <SPI.h>
 #include <LiquidCrystal_I2C.h>
 
-//#include "./coolASSM.h" // cool arduino serial state machine
 #include "./coolASSTCP.h" // cool arduino serial state machine
-//#include "./coolATCP.h" // cool arduino temperature cable probes
 
 // LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 #define POWER 7 // arduino's built-in LED
 
 ASSTCP asstcp; // serial state machine object
-ATCP atcp;  // temp cable probe object
 
 void setup( ) {
+
+  // due to hardware, use PIN7 as VCC SOURCE ;-)
   pinMode(POWER, OUTPUT); // arduino's built-in LED
   digitalWrite(POWER, HIGH); // sets the digital pin LED on
+
   // initialize the serial state machine
   asstcp.setup( );
-
-  // initialize the temp cable probe
-  atcp.setup( );
 
 } // method
 
 void loop( ) {
+
   asstcp.loop( ); // loop serial state machine reading and sending values
 
   delay( 10 ); // 10 ms

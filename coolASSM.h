@@ -79,7 +79,7 @@ public:
    * \brief take this to arduino's setup method; it connects the serial
    * and sends a PING to client
    */
-  void setup( );
+  virtual void setup( );
 
   /*!
    * \brief display a welcome message for showing interactivity; not necessary
@@ -153,6 +153,30 @@ protected:
    * \param the bare data ..
    */
   void writeData( String command );
+
+  /*!
+   * \brief Send some data to CLIENT
+   * \param the bare data ..
+   */
+  void writeData( float data );
+
+  /*!
+   * \brief Send some data to CLIENT
+   * \param the bare data by size of digits ..
+   */
+  void writeData( float data, int digits );
+
+  /*!
+   * \brief Send some data to CLIENT
+   * \param the bare data ..
+   */
+  void writeData( double data );
+
+  /*!
+   * \brief Send some data to CLIENT
+   * \param the bare data by size of digits ..
+   */
+  void writeData( double data, int digits );
 
   /*!
    * \brief Display some string including current STATE and COMMAND

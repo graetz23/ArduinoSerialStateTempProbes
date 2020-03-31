@@ -77,17 +77,17 @@ public:
   /*!
    * \brief Destructor
    */
-  ~ATCP( void );
+  virtual ~ATCP( void );
 
   /*!
    * \brief Call this to set your base conditions
    */
-  void setup( void );
+  virtual void setup( void );
 
   /*!
    * \brief call this to update the measurement and internal calculations
    */
-  void loop( void );
+  virtual void loop( void );
 
   /*!
    * \brief call this to read the analog value of a NTC probe of certain ID;

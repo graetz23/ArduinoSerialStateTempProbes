@@ -53,7 +53,7 @@ ASSM_HELPER* ASSM::get_ASSM_HELPER( void ) {
 } // method
 
 void ASSM::display( String s ) {
-  const char* cstr = s.c_str();
+  // const char* cstr = s.c_str();
   String sstate = _helper->state_to_String( _state );
   const char* cstate = sstate.c_str();
   String scmmnd = _helper->command_to_String( _command );
@@ -78,6 +78,34 @@ void ASSM::writeData( String data ) {
   // sprintf( str, "%d", command );
   const char* cstr = data.c_str( );
   Serial.write( cstr );
+} // method
+
+void ASSM::writeData( float data ) {
+  // char c = command + 10 +'0';
+  // char str[ 10 ];
+  // sprintf( str, "%d", command );
+  Serial.print( data, 4 );
+} // method
+
+void ASSM::writeData( float data, int digits ) {
+  // char c = command + 10 +'0';
+  // char str[ 10 ];
+  // sprintf( str, "%d", command );
+  Serial.print( data, digits );
+} // method
+
+void ASSM::writeData( double data ) {
+  // char c = command + 10 +'0';
+  // char str[ 10 ];
+  // sprintf( str, "%d", command );
+  Serial.print( data, 4 );
+} // method
+
+void ASSM::writeData( double data, int digits ) {
+  // char c = command + 10 +'0';
+  // char str[ 10 ];
+  // sprintf( str, "%d", command );
+  Serial.print( data, digits );
 } // method
 
 void ASSM::writeCommand( uint8_t command ) {

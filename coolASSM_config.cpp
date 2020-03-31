@@ -161,8 +161,8 @@ int ASSM_HELPER::a2i(const char *s)
 } // method
 
 String ASSM_HELPER::d2str( double d ) {
-  char c[50];
-  sprintf( c,"%f", d);
+  char c[12];
+  sprintf( c,"%d", d);
   String str = "";
   str = String( c );
   return str;
