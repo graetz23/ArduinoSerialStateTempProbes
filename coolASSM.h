@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200331 
+ * version 20200331
  *
  * MIT License
  *
@@ -55,7 +55,7 @@
  */
 class ASSM {
 
-private:
+protected:
 
   uint8_t _command; // current command of cool ASSM
 
@@ -96,7 +96,7 @@ public:
    */
   void loop( );
 
-private:
+protected:
   /*!
    * \brief cyclic called when coolASSM is in ERROR state - overload method
    */

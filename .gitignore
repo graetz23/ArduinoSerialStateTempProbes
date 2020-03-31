@@ -1,6 +1,9 @@
 # Arduino Makefile
 build-*
 
+# Scriptings
+.refresh.sh
+
 # Prerequisites
 *.d
 
