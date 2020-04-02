@@ -36,7 +36,7 @@
 
 #include "./coolASSTCP.h" // base class header file
 
-LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 ASSTCP::ASSTCP( void ) {
   //_state = ASSM_STATE_IDLE; // initial STATE is IDLE due to not reacting
@@ -58,7 +58,9 @@ void ASSTCP::setup( void ) {
   lcd.init();
   lcd.backlight();
   lcd.home( ); // same as lcd.setCursor(0,0);
-  lcd.print("setup ..");
+  lcd.print("coolASSTCP");
+  lcd.setCursor(0,1);
+  lcd.print(".. setup");
   delay(500);
   lcd.clear( ); // clear lcd display
   lcd.home( ); // same as lcd.setCursor(0,0);
@@ -68,8 +70,8 @@ void ASSTCP::setup( void ) {
 } // method
 
 void ASSTCP::displayProbe( int id ) {
-  double probeA0 = _atcp->readNTCProbe( id );
-  double tempA0 = _atcp->readNTCProbe_Celsius( id );
+  // double probeAx = _atcp->readNTCProbe( id );
+  double tempAx = _atcp->readNTCProbe_Celsius( id );
   String id_str = "";
   if ( id == 0 ) {
     id_str = "A0";
@@ -87,25 +89,27 @@ void ASSTCP::displayProbe( int id ) {
     id_str = "Ax";
   } // if
   lcd.home( ); // same as lcd.setCursor(0,0);
-  lcd.print("probe ");
-  lcd.print(id_str);
-  lcd.print(": ");
-  lcd.print( probeA0 );
+  lcd.print("ASSTCP - ");
+  lcd.print(_helper->state_to_String( _state ));
+  lcd.print("    "); // blanking some
   lcd.setCursor( 0, 1 ); // set cursor second line
-  lcd.print("temp  ");
+  lcd.print("temp ");
   lcd.print(id_str);
-  lcd.print(": ");
-  lcd.print( tempA0 );
+  lcd.print(" ");
+  lcd.print( tempAx );
+  lcd.print("     "); // blanking some
 } // method
 
 void ASSTCP::displayError( ) {
   lcd.clear( ); // same as lcd.setCursor(0,0);
   lcd.home( ); // same as lcd.setCursor(0,0);
   lcd.print("error state!");
+  lcd.print("    "); // blanking some
   lcd.setCursor( 0, 1 ); // set cursor second line
   double probeA0 = _atcp->readNTCProbe( 0 );
-  lcd.print("try A0: ");
+  lcd.print("try A0 ");
   lcd.print( probeA0 );
+  lcd.print("    "); // blanking some
 } // method
 
 uint8_t ASSTCP::processing( uint8_t command ) {
@@ -115,44 +119,47 @@ uint8_t ASSTCP::processing( uint8_t command ) {
   double temp = 0.0;
 
   if( command == 70 ) {
-    displayProbe( 0 ); // while running
-    temp = _atcp->readNTCProbe_Celsius( 0 );
+    _mementoID = 0; // only used for repeating last request on display
+    temp = _atcp->readNTCProbe_Celsius( _mementoID );
     writeCommand( "A0" );
     writeData( temp );
     writeCommand( "/A0" );
   } else if( command == 71 ) {
-    displayProbe( 1 ); // while running
-    temp = _atcp->readNTCProbe_Celsius( 1 );
+    _mementoID = 1; // only used for repeating last request on display
+    temp = _atcp->readNTCProbe_Celsius( _mementoID );
     writeCommand( "A1" );
     writeData( temp );
     writeCommand( "/A1" );
   } else if( command == 72 ) {
-    displayProbe( 2 ); // while running
+    _mementoID = 2; // only used for repeating last request on display
+    temp = _atcp->readNTCProbe_Celsius( _mementoID );
     temp = _atcp->readNTCProbe_Celsius( 2 );
     writeCommand( "A2" );
     writeData( temp );
     writeCommand( "/A2" );
   } else if( command == 73 ) {
-    displayProbe( 3 ); // while running
-    temp = _atcp->readNTCProbe_Celsius( 3 );
+    _mementoID = 3; // only used for repeating last request on display
+    temp = _atcp->readNTCProbe_Celsius( _mementoID );
     writeCommand( "A3" );
     writeData( temp );
     writeCommand( "/A3" );
   } else if( command == 74 ) {
-    displayProbe( 4 ); // while running
-    temp = _atcp->readNTCProbe_Celsius( 4 );
+    _mementoID = 4; // only used for repeating last request on display
+    temp = _atcp->readNTCProbe_Celsius( _mementoID );
     writeCommand( "A4" );
     writeData( temp );
     writeCommand( "/A4" );
   } else if( command == 75 ) {
-    displayProbe( 5 ); // while running
-    temp = _atcp->readNTCProbe_Celsius( 5 );
+    _mementoID = 5; // only used for repeating last request on display
+    temp = _atcp->readNTCProbe_Celsius( _mementoID );
     writeCommand( "A5" );
     writeData( temp );
     writeCommand( "/A5" );
   } else {
     // do nothing ..
   } // if
+
+  displayProbe( _mementoID ); // while running
 
   return next_command; // do not self command - NULL
 
@@ -164,7 +171,7 @@ uint8_t ASSTCP::error( uint8_t command ) {
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
 
   displayError( ); // while error show error and try A0
-  delay( 100 );
+  delay( 250 );
 
   return next_command;
 
@@ -174,9 +181,11 @@ uint8_t ASSTCP::idle( uint8_t command ) {
 
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
 
-  displayProbe( 0 ); // while idle
+  _mementoID = 0; // A0; mmeber only used for having nice displaying ..
 
-  processing( command ); // let arduino in IDLE also respond to sensor request
+  displayProbe( _mementoID ); // while idle
+
+  // processing( command ); // let arduino in IDLE also respond to sensor request
 
   return next_command;
 
@@ -187,6 +196,9 @@ uint8_t ASSTCP::runMODE1( uint8_t command ) {
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
 
   processing( command ); // does all the job of using coolATCP ..
+
+  // if( command != _command )
+  //   lcd.clear( ); // quick help on changing states ..
 
   return next_command;
 

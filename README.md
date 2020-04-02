@@ -1,7 +1,9 @@
-## cool Arduino Temperature Cable Probe
+## cool Arduino Serial State Temperature Cable Probe
 
 ### Introduction
 cool Arduino Temperature Cable Probe (coolATCP) drives Negative Temperature Coefficient (NTC) probes on all available _analog inputs_ and makes resistor values in _Ohm_ or the temperature in _K_, _°C_, or _°F_ available.
+
+![photo of my coolASSTCP test bench](./coolASSTCP.jpg)
 
 ### Building
 For building the HEX file, the [arduino Makefile](https://github.com/sudar/Arduino-Makefile) is used. So clone or download / unzip this first to your system. Afterwards configure the _Makefile_ to your arduino boards and type: _make_.
@@ -31,8 +33,9 @@ Everything was coded using:
     - in _coolASSM_: method _running_ was deprecated and removed,
     - in _coolASSM_: methods _runMODE1, runMODE2, .., runMODE7_ were added instead,
     - _overloaded_ method _runMODE1_ instead of _running_
+  - added photo of my _test bench_ ;-)
 
 **20200331**
   - adding MIT License to all files.
   - adding the README.md for explanation,
-  - setting up reository on [github.com](https://github.com/graetz23/coolArduinoTemperatureCableProbe).
+  - setting up reository on [github.com](https://github.com/graetz23/coolArduinoSerialStateTCP).

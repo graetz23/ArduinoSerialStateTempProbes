@@ -229,7 +229,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
   switch( _command ) {
     // process the COMMAND SNA - State Not Available; we are in ERROR state ..
     case ASSM_CMD_SNA:
-      state = ASSM_STATE_ERROR;
+      state = ASSM_STATE_ERROR; // keep ERROR state as fundamental STATE .. ;-)
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_SNA;
       break;
@@ -238,7 +238,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
       if( _state == ASSM_STATE_ERROR ) {
         state = ASSM_STATE_IDLE;
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       writeCommand( ASSM_CMD_PONG ); // ALWAYS answer a PING with a PONG
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
@@ -249,7 +249,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
       if( _state == ASSM_STATE_ERROR ) {
         state = ASSM_STATE_IDLE;
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       writeCommand( ASSM_CMD_PING ); // ALWAYS answer a PONG with a PING
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
@@ -264,21 +264,28 @@ uint8_t ASSM::process_command( uint8_t command ) {
     // process the COMMAND RUN; now some working task should be processed
     case ASSM_CMD_RUN:
       if( _state == ASSM_STATE_MODE1 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else if( _state == ASSM_STATE_MODE2 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else if( _state == ASSM_STATE_MODE3 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else if( _state == ASSM_STATE_MODE4 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else if( _state == ASSM_STATE_MODE5 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else if( _state == ASSM_STATE_MODE6 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else if( _state == ASSM_STATE_MODE7 ) {
+        state = _state; // keep same STATE ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state; // only if we are not in ERROR ..
+        state = _state; // keep same STATE ..
       } // if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL ) {
         debug_command = ASSM_CMD_RUN;
@@ -308,7 +315,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_IDLE;
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL ) {
         debug_command = ASSM_CMD_STOP;
@@ -316,19 +323,19 @@ uint8_t ASSM::process_command( uint8_t command ) {
     break;
     // process the COMMAND WAIT; may be stop some processing task ..
     case ASSM_CMD_WAIT:
-      state = _state;
+      state = _state; // keep same STATE ..
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_WAIT;
     break;
     // process the COMMAND EVENT; may be do something while processing ..
     case ASSM_CMD_EVENT:
-      state = _state;
+      state = _state; // keep same STATE ..
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_EVENT;
     break;
     // process the COMMAND STATUS
     case ASSM_CMD_STATUS:
-      state = _state;
+      state = _state; // keep same STATE ..
       writeState( _state ); // ALWAYS tell about the current STATE
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_STATUS;
@@ -341,7 +348,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE1; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD1;
@@ -353,7 +360,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE2; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD2;
@@ -365,7 +372,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE3; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD3;
@@ -377,7 +384,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE4; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD4;
@@ -389,7 +396,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE5; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD5;
@@ -401,7 +408,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE6; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD6;
@@ -413,7 +420,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
         state = ASSM_STATE_MODE7; // only if we are not in ERROR ..
         writeCommand( ASSM_CMD_AKNW ); // answer with a ACKNOWLEDGE
       } else {
-        state = _state;
+        state = _state; // keep same STATE ..
       }// if
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_RNMD7;
@@ -422,21 +429,21 @@ uint8_t ASSM::process_command( uint8_t command ) {
     // process the COMMAND CNCT
     case ASSM_CMD_CNCT: // obviously useless
       // may be one want to CONNECT and DISCONNECT while IDLE / RUNNING ..
-      state = _state;
+      state = _state; // keep same STATE ..
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_CNCT;
     break;
     // process the COMMAND DCNT
     case ASSM_CMD_DCNT: // obviously useless
       // may be one want to CONNECT and DISCONNECT while IDLE / RUNNING ..
-      state = _state;
+      state = _state; // keep same STATE ..
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL )
         debug_command = ASSM_CMD_DCNT;
     break;
 
     // process no (NULL) or an unknown COMMAND
     default: // NULL command
-      state = _state; // next STATE is the same as last STATE ..
+      state = _state;  // keep same STATE ..
       if( ASSM_DEBUG_SHOW_COMMAND_INTERNAL ) {
         display( "CMND NULL" );
         delay(ASSM_DEBUG_DISPLAY_SHOW);
@@ -455,7 +462,7 @@ uint8_t ASSM::process_command( uint8_t command ) {
     delay(ASSM_DEBUG_DISPLAY_BLANK);
   } // if
 
-  return state;
+  return state; // hand back next STATE by processed COMMAND
 } // method
 
 uint8_t ASSM::process_state( uint8_t state ) {

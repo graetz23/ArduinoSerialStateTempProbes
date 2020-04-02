@@ -92,6 +92,8 @@ private:
    */
   void displayProbe( int id );
 
+  int _mementoID;
+
   /*!
    * \brief display error message while in error state
    * on some I2C 20x2 LCD display ..
