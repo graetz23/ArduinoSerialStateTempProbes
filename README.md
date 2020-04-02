@@ -8,6 +8,7 @@ cool Arduino Serial State Temperature Cable Probe (coolASSTCP) drives Negative a
 Two projects are combined for coolASSTCP:
   - [cool Arduino serial state machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
   - [cool Arduino Temperature Cable Probe (coolATCP)](https://github.com/graetz23/coolArduinoTemperatureCableProbe),
+
 and extended by _extra serial commands_ to allow for requesting wach of the six temperatures cable probes (TCPs).
 
 ### Building
@@ -25,6 +26,7 @@ For reading the temperature of _analog input A0_, try:
   0. **<10>** ask _optionally_ for _STATUS_, and arduino should reply with: **<IDLE/>**; the current state,
   1. **<11>** tells arduino to go to another state: run _MODE1_; which is _overloaded_,
   2. **<70>** requests arduino to send _°C_ value of CTP at A0: **<A0>22.789</A0>**.
+
 For any other analog input: A1, A2, ,A5, try sending while in run _MODE1_: **<71>, <72>, ..,<75>**.
 
 For more details, see [_coolSSATCP.ino_](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.ino) file as _outer world usage_ example For an _own adapation_, e.g. for drving another LCD display, take a look to the _inner world_, see the [coolASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.cpp) as how to.
@@ -51,6 +53,7 @@ Everything was coded using:
     - IDLE the LED does a heartbeat with 60 bpm,
     - and for all run MODEs, the LED flashes by 10 milliseonds.
   - added photo of my _test bench_ ;-)
+  - creating README.md.
 
 **20200331**
   - adding MIT License to all files.
