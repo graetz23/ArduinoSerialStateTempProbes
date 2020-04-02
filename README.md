@@ -6,6 +6,7 @@ cool Arduino Serial State Temperature Cable Probe (coolASSTCP) drives Negative a
 ![photo of my coolASSTCP test bench](./coolASSTCP.jpg)
 
 Two projects are combined for coolASSTCP:
+
   - [cool Arduino serial state machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
   - [cool Arduino Temperature Cable Probe (coolATCP)](https://github.com/graetz23/coolArduinoTemperatureCableProbe),
 
@@ -23,6 +24,7 @@ However there are several public _posts_, _blogs_, and _vlogs_ on internet showi
 Flash arduino, afterwards open a _serial client_, e.g. the _serial monitor (press CTRL+SHFT+m)_ of your arduino IDE. arduino is in STATE: _IDLE_ and waits for retrieving _COMMANDS_ from you. _COMMANDS_ have the syntax: <CMD_ID>; e.g. <2>, <3>, and so on; a listing of _all COMMANDS_ is [here](https://github.com/graetz23/coolArduinoSerialStateMachine#usage). arduino will reply in _IDLE_ to some of these _COMMANDs_; just try for.
 
 However, for reading the temperature values of _analog input A0_, try:
+
   0. **<10>** ask _optionally_ for _STATUS_, and arduino should reply with: **<IDLE/>**; the current state,
   1. **<11>** tells arduino to go to another state: run _MODE1_; which is _overloaded_,
   2. **<70>** requests arduino to send _°C_ value of CTP at A0: **<A0>22.789</A0>**.
@@ -30,6 +32,7 @@ However, for reading the temperature values of _analog input A0_, try:
 For any other analog input: A1, A2, ,A5, try sending while in run _MODE1_: **<71>, <72>, ..,<75>**.
 
 The _extended_ COMMAND list by this project:
+
   - **<70>** request temperature value in degree celsius (°C) of analog input **A0**,
   - **<71>** request temperature value in degree celsius (°C) of analog input **A1**,
   - **<72>** request temperature value in degree celsius (°C) of analog input **A2**,
@@ -37,18 +40,19 @@ The _extended_ COMMAND list by this project:
   - **<74>** request temperature value in degree celsius (°C) of analog input **A4**,
   - **<75>** request temperature value in degree celsius (°C) of analog input **A5**,
 
-if **arduino is procesing** in run **MODE1**; general COMMAND: **<11>**.
+if **arduino is processing** in run **MODE1**; general COMMAND: **<11>**.
 
-For more details, see [_coolSSATCP.ino_](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.ino) file as _outer world usage_ example For an _own adapation_, e.g. for drving another LCD display, take a look to the _inner world_, see the [coolASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.cpp) as how to.
+For more details, see [coolSSATCP.ino](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [coolASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.cpp) and also [coolATCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolATCP.cpp) as how to change things inside.
 
 ### Remarks
-I use this project for driving several NTC probess in a home brewery system to monitor the temperatures only using arduino, while the _brewery automation_ is driven by the _raspberry pi_ using  [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3 using [coolPSSM] (https://github.com/graetz23/coolPythonSerialStateMachine) as a basis; coolPSSM is the python aquivalent to [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).
+I will use this project for driving several NTC probes in a home brewery system to monitor the temperatures independently, only using arduino and a 20x4 LCD display. The _brewery automation_ is driven by a _raspberry pi 2B_ running [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3 using [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine) as a basis for communicating with arduino; coolPSSM is the python aquivalent to [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).
 
 Everything was coded using:
 
   - [**atom**](https://atom.io/) editor,
-  - [**arduino Makefile**](https://github.com/sudar/Arduino-Makefile),
-  - [**Gnome**](https://www.gnome.org/) windows manager,
+  - [**arduino Makefile**](https://github.com/sudar/Arduino-Makefile) for automated building,
+  - [**arduino IDE**](https://www.arduino.cc/en/main/software) for serial monitor,
+  - [**Gnome**](https://www.gnome.org/) as window manager,
   - and [**debian**](https://www.debian.org/) GNU/Linux.
 
 ## ChangeLog
