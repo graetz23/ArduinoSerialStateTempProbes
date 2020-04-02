@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200331
+ * version 20200402
  *
  * MIT License
  *
@@ -33,6 +33,24 @@
 
 #include <Arduino.h>
 
+// simple STATE and some load indicator that flashes differently in each state;
+// if true, the defined PIN (default 13, where all small arduino boards have a
+// built in LED) will will light up and flash differently in each STATE. For the
+// ERROR STATE it will light permanently, for IDLE STATE it will flash like a
+// hearbeat with 60 bpms, and for _all_ run MODE STATEs it will flash for 10
+// milliseonds; last let arduino take a general delay of 20 ms in total.
+#define ASSM_LED_ACTV       true // false; PIN can be used for electronics
+#define ASSM_LED_PIN        13 // define you PIN if you soldered differently
+
+// define the baud rate the arduino should run its serial ..
+// #define SERIAL_BAUD                      2400  // Baudrate
+// #define SERIAL_BAUD                      4800  // Baudrate
+#define SERIAL_BAUD                         9600  // Baudrate
+// #define SERIAL_BAUD                      19200  // Baudrate
+// #define SERIAL_BAUD                      38400  // Baudrate
+// #define SERIAL_BAUD                      57600  // Baudrate
+// #define SERIAL_BAUD                      115200  // Baudrate
+
 /**
  * \brief the cool ASSM COMMANDs as IDs and STRINGs
  */
@@ -44,8 +62,8 @@
 #define ASSM_CMD_PING_STR    "PING"
 #define ASSM_CMD_PONG        3 // send a PONG for a PING receive
 #define ASSM_CMD_PONG_STR    "PONG"
-#define ASSM_CMD_AKNWLDG     4 // ACKNOWLEDGE a received command
-#define ASSM_CMD_AKNWLDG_STR "AKNWLDG"
+#define ASSM_CMD_AKNW        4 // ACKNOWLEDGE a received command
+#define ASSM_CMD_AKNW_STR    "AKNW"
 #define ASSM_CMD_RUN         5 // signal to WAIT to CLIENT or SERVER
 #define ASSM_CMD_RUN_STR     "RUN"
 #define ASSM_CMD_WAIT        6 // signal to WAIT to CLIENT or SERVER
@@ -58,13 +76,29 @@
 #define ASSM_CMD_STOP_STR    "STOP"
 #define ASSM_CMD_STATUS      10 // request the STATUS of CLIENT or SERVER
 #define ASSM_CMD_STATUS_STR  "STATUS"
-#define ASSM_CMD_CONNECT     21 // CONNECT and ready for COMMANDs
-#define ASSM_CMD_CONNECT_STR "CONNECT"
-#define ASSM_CMD_DISCNCT     22 // DISCONNECT from SERVER
-#define ASSM_CMD_DISCNCT_STR "DISCNCT"
-// TODO add your own messages here ..
-#define ASSM_CMD_EXAMPLE     42
-#define ASSM_CMD_EXAMPLE_STR "EXAMPLE"
+// define different RUN MODES ..
+#define ASSM_CMD_RNMD1      11 // let arduino do something while in run MODE 1
+#define ASSM_CMD_RNMD1_STR  "RNMD1"
+#define ASSM_CMD_RNMD2      12 // let arduino do something while in run MODE 2
+#define ASSM_CMD_RNMD2_STR  "RNMD2"
+#define ASSM_CMD_RNMD3      13 // let arduino do something while in run MODE 3
+#define ASSM_CMD_RNMD3_STR  "RNMD3"
+#define ASSM_CMD_RNMD4      14 // let arduino do something while in run MODE 4
+#define ASSM_CMD_RNMD4_STR  "RNMD4"
+#define ASSM_CMD_RNMD5      15 // let arduino do something while in run MODE 5
+#define ASSM_CMD_RNMD5_STR  "RNMD5"
+#define ASSM_CMD_RNMD6      16 // let arduino do something while in run MODE 6
+#define ASSM_CMD_RNMD6_STR  "RNMD6"
+#define ASSM_CMD_RNMD7      17 // let arduino do something while in run MODE 7
+#define ASSM_CMD_RNMD7_STR  "RNMD7"
+// CONNECT and DISCONNECT COMMANDs; not really necessary
+#define ASSM_CMD_CNCT     18 // CONNECT and ready for COMMANDs
+#define ASSM_CMD_CNCT_STR "CNCT"
+#define ASSM_CMD_DCNT     19 // DISCONNECT from SERVER
+#define ASSM_CMD_DCNT_STR "DCNT"
+// ALL other COMMAND values are application specific and should be defined in
+// by extending the this class. In parallel one should overload the methods
+ // of error, idle, and run_MODE1, run_MODE2, .. ,run_MODE7.
 
 /*!
  * \brief The cool ASSM STATEs
@@ -73,8 +107,22 @@
 #define ASSM_STATE_ERROR_STR    "ERROR"
 #define ASSM_STATE_IDLE         1
 #define ASSM_STATE_IDLE_STR     "IDLE"
-#define ASSM_STATE_RUNNING      2
-#define ASSM_STATE_RUNNING_STR  "RUNNING"
+// the defined run MODES of arduino to do different jobs
+#define ASSM_STATE_MODE1      11
+#define ASSM_STATE_MODE1_STR  "MODE1"
+#define ASSM_STATE_MODE2      12
+#define ASSM_STATE_MODE2_STR  "MODE1"
+#define ASSM_STATE_MODE3      13
+#define ASSM_STATE_MODE3_STR  "MODE1"
+#define ASSM_STATE_MODE4      14
+#define ASSM_STATE_MODE4_STR  "MODE1"
+#define ASSM_STATE_MODE5      15
+#define ASSM_STATE_MODE5_STR  "MODE1"
+#define ASSM_STATE_MODE6      16
+#define ASSM_STATE_MODE6_STR  "MODE1"
+#define ASSM_STATE_MODE7      17
+#define ASSM_STATE_MODE7_STR  "MODE7"
+
 
 /*!
  * a Helper for converting COMMANDs and STATEs from ID to String & vice versa

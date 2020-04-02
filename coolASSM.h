@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200331
+ * version 20200402
  *
  * MIT License
  *
@@ -36,10 +36,6 @@
 #include <SPI.h>
 
 #include "./coolASSM_config.h" // the COMMANDs and STATEs ..
-
-#define SERIAL_BAUD                         9600  // Baudrate
-// #define SERIAL_BAUD                      19200  // Baudrate
-// #define SERIAL_BAUD                      115200  // Baudrate
 
 #define ASSM_DEBUG                          true
 #define ASSM_DEBUG_SHOW_COMMAND             false
@@ -84,12 +80,12 @@ public:
   /*!
    * \brief display a welcome message for showing interactivity; not necessary
    */
-  void welcome( );
+  virtual void welcome( );
 
   /*!
    * \brief display a ready message for showing interactivity; not necessary
    */
-  void ready( );
+  virtual void ready( );
 
   /*!
    * \brief take this to arduino's loop method to drive the state machine
@@ -108,9 +104,39 @@ protected:
   virtual uint8_t idle( uint8_t command );
 
   /*!
-   * \brief cyclic called when coolASSM is in RUNNING state - overload method
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
    */
-  virtual uint8_t running( uint8_t command );
+  virtual uint8_t runMODE1( uint8_t command );
+
+  /*!
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
+   */
+  virtual uint8_t runMODE2( uint8_t command );
+
+  /*!
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
+   */
+  virtual uint8_t runMODE3( uint8_t command );
+
+  /*!
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
+   */
+  virtual uint8_t runMODE4( uint8_t command );
+
+  /*!
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
+   */
+  virtual uint8_t runMODE5( uint8_t command );
+
+  /*!
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
+   */
+  virtual uint8_t runMODE6( uint8_t command );
+
+  /*!
+   * \brief cyclic called when coolASSM is in run MODE 1 state - overload method
+   */
+  virtual uint8_t runMODE7( uint8_t command );
 
   /*!
    * \brief Returns the HELPER for using it outside cool ASSM ..
@@ -198,6 +224,27 @@ private: // some stuff that's not so interesting
    * \return may return the NEXT COMMAND, INSTEAD of RECEIVED COMMAND
    */
   uint8_t process_state( uint8_t state );
+
+  /*!
+   * \brief let LED go HIGH
+   */
+   void led_on( );
+
+   /*!
+    * \brief let LED go LOW
+    */
+    void led_off( );
+
+  /*!
+   * \brief let LED go HIGH -> delay -> LOW -> delay
+   */
+   void led_blink( int duration );
+
+   /*!
+    * \brief let LED blink like a heat beat by certain interval
+    */
+    void led_heartBeat( int interval );
+
 
   /*!
    * \brief Listen the serial and decode the message received

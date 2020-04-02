@@ -26,6 +26,12 @@ Everything was coded using:
 
 ## ChangeLog
 
+**20200402**
+  - matching to coolASSM verions 20200402:
+    - in _coolASSM_: method _running_ was deprecated and removed,
+    - in _coolASSM_: methods _runMODE1, runMODE2, .., runMODE7_ were added instead,
+    - _overloaded_ method _runMODE1_ instead of _running_
+
 **20200331**
   - adding MIT License to all files.
   - adding the README.md for explanation,

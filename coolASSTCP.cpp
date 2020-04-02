@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20200331
- * version 20200331
+ * version 20200402
  *
  * MIT License
  *
@@ -70,11 +70,31 @@ void ASSTCP::setup( void ) {
 void ASSTCP::displayProbe( int id ) {
   double probeA0 = _atcp->readNTCProbe( id );
   double tempA0 = _atcp->readNTCProbe_Celsius( id );
+  String id_str = "";
+  if ( id == 0 ) {
+    id_str = "A0";
+  } else if( id == 1 ) {
+    id_str = "A1";
+  } else if( id == 2 ) {
+    id_str = "A2";
+  } else if( id == 3 ) {
+    id_str = "A3";
+  } else if( id == 4 ) {
+    id_str = "A4";
+  } else if( id == 5 ) {
+    id_str = "A5";
+  } else {
+    id_str = "Ax";
+  } // if
   lcd.home( ); // same as lcd.setCursor(0,0);
-  lcd.print("probe A0: ");
+  lcd.print("probe ");
+  lcd.print(id_str);
+  lcd.print(": ");
   lcd.print( probeA0 );
   lcd.setCursor( 0, 1 ); // set cursor second line
-  lcd.print("temp  A0: ");
+  lcd.print("temp  ");
+  lcd.print(id_str);
+  lcd.print(": ");
   lcd.print( tempA0 );
 } // method
 
@@ -88,34 +108,9 @@ void ASSTCP::displayError( ) {
   lcd.print( probeA0 );
 } // method
 
-uint8_t ASSTCP::error( uint8_t command ) {
+uint8_t ASSTCP::processing( uint8_t command ) {
 
   uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
-
-  displayError( ); // while error show error and try A0
-  delay( 100 );
-
-  return next_command;
-
-} // method
-
-uint8_t ASSTCP::idle( uint8_t command ) {
-
-  uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
-
-  // TODO Place your code for IDLE STATE or EXTEND CLASS and OVERLOAD method
-
-  displayProbe( 0 ); // while idle
-
-  return next_command;
-
-} // method
-
-uint8_t ASSTCP::running( uint8_t command ) {
-
-  uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
-
-  // TODO Place your code for RUNNING STATE or EXTEND CLASS and OVERLOAD method
 
   double temp = 0.0;
 
@@ -156,7 +151,42 @@ uint8_t ASSTCP::running( uint8_t command ) {
     writeData( temp );
     writeCommand( "/A5" );
   } else {
+    // do nothing ..
   } // if
+
+  return next_command; // do not self command - NULL
+
+} // method
+
+
+uint8_t ASSTCP::error( uint8_t command ) {
+
+  uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
+
+  displayError( ); // while error show error and try A0
+  delay( 100 );
+
+  return next_command;
+
+} // method
+
+uint8_t ASSTCP::idle( uint8_t command ) {
+
+  uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
+
+  displayProbe( 0 ); // while idle
+
+  processing( command ); // let arduino in IDLE also respond to sensor request
+
+  return next_command;
+
+} // method
+
+uint8_t ASSTCP::runMODE1( uint8_t command ) {
+
+  uint8_t next_command = ASSM_CMD_NULL; // in general KEEP this STATE
+
+  processing( command ); // does all the job of using coolATCP ..
 
   return next_command;
 

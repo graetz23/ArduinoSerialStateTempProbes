@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20200331
- * version 20200331
+ * version 20200402
  *
  * MIT License
  *
@@ -63,6 +63,11 @@ public:
 private:
 
   /*!
+   * \brief does all the probe reading and sending to serial job
+   */
+  uint8_t processing( uint8_t command );
+
+  /*!
    * \brief cyclic called when coolASSM is in ERROR state - overloaded method
    */
   virtual uint8_t error( uint8_t command );
@@ -75,7 +80,7 @@ private:
   /*!
    * \brief cyclic called when coolASSM is in RUNNING state - overloaded method
    */
-  virtual uint8_t running( uint8_t command );
+  virtual uint8_t runMODE1( uint8_t command );
 
   ATCP* _atcp; // cable temperature probe pointer
 

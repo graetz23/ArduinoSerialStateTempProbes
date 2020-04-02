@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200331
+ * version 20200402
  *
  * MIT License
  *
@@ -56,8 +56,8 @@ String ASSM_HELPER::command_to_String( uint8_t command ) {
  	     str = ASSM_CMD_PONG_STR;
  	   break;
 
-    case ASSM_CMD_AKNWLDG :
- 	     str = ASSM_CMD_AKNWLDG_STR;
+    case ASSM_CMD_AKNW :
+ 	     str = ASSM_CMD_AKNW_STR;
  	  break;
 
     case ASSM_CMD_RUN :
@@ -84,16 +84,40 @@ String ASSM_HELPER::command_to_String( uint8_t command ) {
  	    str = ASSM_CMD_STATUS_STR;
  	   break;
 
-    case ASSM_CMD_CONNECT :
- 	    str = ASSM_CMD_CONNECT_STR;
+    case ASSM_CMD_CNCT :
+ 	    str = ASSM_CMD_CNCT_STR;
  	  break;
 
-    case ASSM_CMD_DISCNCT :
- 	    str = ASSM_CMD_DISCNCT_STR;
+    case ASSM_CMD_RNMD1 :
+ 	    str = ASSM_CMD_RNMD1_STR;
  	  break;
 
-    case ASSM_CMD_EXAMPLE :
- 	    str = ASSM_CMD_EXAMPLE_STR;
+    case ASSM_CMD_RNMD2 :
+ 	    str = ASSM_CMD_RNMD2_STR;
+ 	  break;
+
+    case ASSM_CMD_RNMD3 :
+ 	    str = ASSM_CMD_RNMD3_STR;
+ 	  break;
+
+    case ASSM_CMD_RNMD4 :
+ 	    str = ASSM_CMD_RNMD4_STR;
+ 	  break;
+
+    case ASSM_CMD_RNMD5 :
+ 	    str = ASSM_CMD_RNMD5_STR;
+ 	  break;
+
+    case ASSM_CMD_RNMD6 :
+ 	    str = ASSM_CMD_RNMD6_STR;
+ 	  break;
+
+    case ASSM_CMD_RNMD7 :
+ 	    str = ASSM_CMD_RNMD7_STR;
+ 	  break;
+
+    case ASSM_CMD_DCNT :
+ 	    str = ASSM_CMD_DCNT_STR;
  	  break;
 
     // if COMMAND is unkown, show the given COMMAND as a number
@@ -109,21 +133,50 @@ String ASSM_HELPER::command_to_String( uint8_t command ) {
 String ASSM_HELPER::state_to_String( uint8_t state ) {
   String str = "";
   switch( state ) {
+
     case ASSM_STATE_ERROR :
       str = ASSM_STATE_ERROR_STR;
     break;
+
     case ASSM_STATE_IDLE :
       str = ASSM_STATE_IDLE_STR;
     break;
-    case ASSM_STATE_RUNNING :
-      str = ASSM_STATE_RUNNING_STR;
+
+    case ASSM_STATE_MODE1 :
+      str = ASSM_STATE_MODE1_STR;
     break;
+
+    case ASSM_STATE_MODE2 :
+      str = ASSM_STATE_MODE2_STR;
+    break;
+
+    case ASSM_STATE_MODE3 :
+      str = ASSM_STATE_MODE3_STR;
+    break;
+
+    case ASSM_STATE_MODE4 :
+      str = ASSM_STATE_MODE4_STR;
+    break;
+
+    case ASSM_STATE_MODE5 :
+      str = ASSM_STATE_MODE5_STR;
+    break;
+
+    case ASSM_STATE_MODE6 :
+      str = ASSM_STATE_MODE6_STR;
+    break;
+
+    case ASSM_STATE_MODE7 :
+      str = ASSM_STATE_MODE7_STR;
+    break;
+
     // if STATE is unkown, show the given STATE as a number
     default :
       char cstr[12];
       sprintf(cstr, "%d", state);
       str = String(cstr);
     break;
+
   } // switch
   return str;
 } // method
@@ -135,8 +188,20 @@ uint8_t ASSM_HELPER::state_to_Integer( String state ) {
     integer = ASSM_STATE_ERROR;
   } else if( strcmp( cstate, ASSM_STATE_IDLE_STR ) == 0 ) {
     integer = ASSM_STATE_IDLE;
-  } else if( strcmp( cstate, ASSM_STATE_RUNNING_STR ) == 0 ) {
-    integer = ASSM_STATE_RUNNING;
+  } else if( strcmp( cstate, ASSM_STATE_MODE1_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE1;
+  } else if( strcmp( cstate, ASSM_STATE_MODE2_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE2;
+  } else if( strcmp( cstate, ASSM_STATE_MODE3_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE3;
+  } else if( strcmp( cstate, ASSM_STATE_MODE4_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE4;
+  } else if( strcmp( cstate, ASSM_STATE_MODE5_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE5;
+  } else if( strcmp( cstate, ASSM_STATE_MODE6_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE6;
+  } else if( strcmp( cstate, ASSM_STATE_MODE7_STR ) == 0 ) {
+    integer = ASSM_STATE_MODE7;
   } // if
   return integer;
 } // method
