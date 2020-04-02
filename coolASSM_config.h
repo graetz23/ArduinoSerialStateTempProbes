@@ -45,11 +45,11 @@
 // define the baud rate the arduino should run its serial ..
 // #define SERIAL_BAUD                      2400  // Baudrate
 // #define SERIAL_BAUD                      4800  // Baudrate
-#define SERIAL_BAUD                         9600  // Baudrate
+// #define SERIAL_BAUD                         9600  // Baudrate
 // #define SERIAL_BAUD                      19200  // Baudrate
 // #define SERIAL_BAUD                      38400  // Baudrate
 // #define SERIAL_BAUD                      57600  // Baudrate
-// #define SERIAL_BAUD                      115200  // Baudrate
+#define SERIAL_BAUD                      115200  // Baudrate
 
 /**
  * \brief the cool ASSM COMMANDs as IDs and STRINGs
@@ -166,10 +166,25 @@ public:
   uint8_t state_to_Integer( String state );
 
   /*!
-   * \brief receives a string and adds some marking to be a command
-   * \return the string as command
+   * \brief receives a string and adds some marking to be a state or command:
+   *        pattern: <STATE/> or <COMMAND/>
+   * \return the string as marked state or command
    */
-  String mark_as_Command( String command );
+  String mark_as_State_or_Command( String state_or_command );
+
+  /*!
+   * \brief receives a string and adds some marking to be an individual
+   *        starting data command; pattern: <DATA_COMMAND>
+   * \return the string as marked individual starting data command
+   */
+  String mark_as_Data_starting( String individual_data_command );
+
+  /*!
+   * \brief receives a string and adds some marking to be an individual
+   *        stopping data command; pattern: </DATA_COMMAND>
+   * \return the string as marked individual stopping data command
+   */
+  String mark_as_Data_stopping( String individual_data_command );
 
   /*!
    * \brief converts a double to a String
@@ -181,9 +196,10 @@ public:
 private: // some stuff that's not so interesting
 
   const char _markerHead = '<';
+  const char _markerPref = '/';
   const char _markerFoot = '>';
 
-  const String _markerCommand = "CMD_";
+  // const String _markerCommand = "CMD_"; // deprecated
 
   /*!
    * \brief converts a char array into an integer

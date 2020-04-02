@@ -121,40 +121,40 @@ uint8_t ASSTCP::processing( uint8_t command ) {
   if( command == 70 ) {
     _mementoID = 0; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeCommand( "A0" );
+    writeData_starting( "A0" );
     writeData( temp );
-    writeCommand( "/A0" );
+    writeData_stopping( "A0" );
   } else if( command == 71 ) {
     _mementoID = 1; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeCommand( "A1" );
+    writeData_starting( "A1" );
     writeData( temp );
-    writeCommand( "/A1" );
+    writeData_stopping( "A1" );
   } else if( command == 72 ) {
     _mementoID = 2; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
     temp = _atcp->readNTCProbe_Celsius( 2 );
-    writeCommand( "A2" );
+    writeData_starting( "A2" );
     writeData( temp );
-    writeCommand( "/A2" );
+    writeData_stopping( "A2" );
   } else if( command == 73 ) {
     _mementoID = 3; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeCommand( "A3" );
+    writeData_starting( "A3" );
     writeData( temp );
-    writeCommand( "/A3" );
+    writeData_stopping( "A3" );
   } else if( command == 74 ) {
     _mementoID = 4; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeCommand( "A4" );
+    writeData_starting( "A4" );
     writeData( temp );
-    writeCommand( "/A4" );
+    writeData_stopping( "A4" );
   } else if( command == 75 ) {
     _mementoID = 5; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeCommand( "A5" );
+    writeData_starting( "A5" );
     writeData( temp );
-    writeCommand( "/A5" );
+    writeData_stopping( "A5" );
   } else {
     // do nothing ..
   } // if

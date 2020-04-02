@@ -151,28 +151,53 @@ protected:
   uint8_t readCommand( );
 
   /*!
-   * \brief Send a command to the CLIENT
-   * \param The COMMAND number
-   */
-  void writeCommand( uint8_t command );
-
-  /*!
-   * \brief Send a command to the CLIENT
-   * \param The COMMAND as some string
-   */
-  void writeCommand( String command );
-
-  /*!
-  * \brief Send a state to the CLIENT
+  * \brief Send a state to the CLIENT; pattern: <STATE/>
   * \param The STATE number
    */
   void writeState( uint8_t state );
 
   /*!
-  * \brief Send a state to the CLIENT
+  * \brief Send a state to the CLIENT; pattern: <STATE/>
   * \param The STATE number as some string
    */
   void writeState( String state );
+
+  /*!
+   * \brief Send a command to the CLIENT; pattern: <CMD/>
+   * \param The COMMAND number
+   */
+  void writeCommand( uint8_t command );
+
+  /*!
+   * \brief Send a command to the CLIENT; pattern: <CMD/>
+   * \param The COMMAND as some string
+   */
+  void writeCommand( String command );
+
+  /*!
+   * \brief Send an INDIVIDUAL STARTING COMMAND to the CLIENT; pattern: <CMD>
+   * \param The COMMAND as some string
+   */
+  void writeData_starting( uint8_t individual_command );
+
+  /*!
+   * \brief Send an INDIVIDUAL STARTING COMMAND to the CLIENT; pattern: <CMD>
+   * \param The COMMAND as some string
+   */
+  void writeData_starting( String individual_command );
+
+  /*!
+   * \brief Send an INDIVIDUAL STOPPING COMMAND to the CLIENT; pattern: </CMD>
+   * \param The COMMAND as some string
+   */
+  void writeData_stopping( uint8_t individual_command );
+
+  /*!
+   * \brief Send an INDIVIDUAL STOPPING COMMAND to the CLIENT; pattern: </CMD>
+   * \param The COMMAND as some string
+   */
+  void writeData_stopping( String individual_command );
+
 
   /*!
    * \brief Send some data to CLIENT
@@ -249,11 +274,11 @@ private: // some stuff that's not so interesting
   /*!
    * \brief Listen the serial and decode the message received
    */
-  // virtual uint8_t process( uint8_t command );
 
   const char _markerHead = '<';
+  const char _markerPref = '/';
   const char _markerFoot = '>';
-  const String _markerCommand = "CMD_";
+  // const String _markerCommand = "CMD_"; // deprecated
 
   /*!
    * \brief converts a char array into an integer

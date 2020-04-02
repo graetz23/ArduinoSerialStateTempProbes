@@ -75,39 +75,44 @@ void ASSM::ready( ) {
   delay(750); // 500 ms
 } // method
 
+void ASSM::writeData_starting( uint8_t individual_command ) {
+  writeData_starting( _helper->command_to_String( individual_command ) );
+} // method
+
+void ASSM::writeData_starting( String individual_command ) {
+  String str = _helper->mark_as_Data_starting( individual_command );
+  const char* cstr = str.c_str( );
+  Serial.write( cstr );
+} // method
+
+void ASSM::writeData_stopping( uint8_t individual_command ) {
+  writeData_stopping( _helper->command_to_String( individual_command ) );
+} // method
+
+void ASSM::writeData_stopping( String individual_command ) {
+  String str = _helper->mark_as_Data_stopping( individual_command );
+  const char* cstr = str.c_str( );
+  Serial.write( cstr );
+} // method
+
 void ASSM::writeData( String data ) {
-  // char c = command + 10 +'0';
-  // char str[ 10 ];
-  // sprintf( str, "%d", command );
   const char* cstr = data.c_str( );
   Serial.write( cstr );
 } // method
 
 void ASSM::writeData( float data ) {
-  // char c = command + 10 +'0';
-  // char str[ 10 ];
-  // sprintf( str, "%d", command );
   Serial.print( data, 4 );
 } // method
 
 void ASSM::writeData( float data, int digits ) {
-  // char c = command + 10 +'0';
-  // char str[ 10 ];
-  // sprintf( str, "%d", command );
   Serial.print( data, digits );
 } // method
 
 void ASSM::writeData( double data ) {
-  // char c = command + 10 +'0';
-  // char str[ 10 ];
-  // sprintf( str, "%d", command );
   Serial.print( data, 4 );
 } // method
 
 void ASSM::writeData( double data, int digits ) {
-  // char c = command + 10 +'0';
-  // char str[ 10 ];
-  // sprintf( str, "%d", command );
   Serial.print( data, digits );
 } // method
 
@@ -116,7 +121,7 @@ void ASSM::writeCommand( uint8_t command ) {
 } // method
 
 void ASSM::writeCommand( String command ) {
-  String str = _helper->mark_as_Command( command );
+  String str = _helper->mark_as_State_or_Command( command );
   const char* cstr = str.c_str( );
   Serial.write( cstr );
 } // method
@@ -126,7 +131,7 @@ void ASSM::writeState( uint8_t state ) {
 } // method
 
 void ASSM::writeState( String state ) {
-  String str = _helper->mark_as_Command( state );
+  String str = _helper->mark_as_State_or_Command( state );
   const char* cstr = str.c_str( );
   Serial.write( cstr );
 } // method
@@ -136,6 +141,7 @@ uint8_t ASSM::readCommand( ) {
   const byte numChars = 32;
   char receivedChars[numChars]; // an array to store the received data
   static byte ndx = 0;
+  static boolean isPreface = false;
   static boolean isReceiving = false;
   char rc;
   uint8_t cmd = ASSM_CMD_NULL;
@@ -143,17 +149,17 @@ uint8_t ASSM::readCommand( ) {
     while( Serial.available( ) > 0 ) {
       rc = Serial.read( );
       if( isReceiving == true ) {
-         if( rc != _markerFoot ) {
-             receivedChars[ ndx ] = rc;
-             ndx++;
-             if( ndx >= numChars ) {
-                 ndx = numChars - 1;
-             } // if
-         } else {
-             receivedChars[ ndx ] = '\0'; // terminate the string
-             isReceiving = false;
-             ndx = 0;
-         } // if
+        if( rc != _markerFoot ) {
+            receivedChars[ ndx ] = rc;
+            ndx++;
+            if( ndx >= numChars ) {
+                ndx = numChars - 1;
+            } // if
+        } else {
+            receivedChars[ ndx ] = '\0'; // terminate the string
+            isReceiving = false;
+            ndx = 0;
+        } // if
       } // if
       else if( rc == _markerHead )
       { // found a beginning
@@ -718,9 +724,9 @@ uint8_t ASSM::runMODE7( uint8_t command ) {
     // afterwards arduino responds with an UNIQUE
     // command, writes the data back to the client by:
     // <DATA>1;2;3;4;5;6;7;8;9;0</DATA>
-    writeCommand( "DATA" );
+    writeData_starting( "DATA" );
     writeData( "1;2;3;4;5;6;7;8;9;0" );
-    writeCommand( "/DATA" );
+    writeData_stopping( "DATA" );
     // at the end arduino sends a DONE command
     writeCommand( ASSM_CMD_DONE );
   } // if

@@ -206,8 +206,24 @@ uint8_t ASSM_HELPER::state_to_Integer( String state ) {
   return integer;
 } // method
 
-String ASSM_HELPER::mark_as_Command( String command ) {
-  return String( _markerHead ) + command + String( _markerFoot );
+String ASSM_HELPER::mark_as_State_or_Command( String state_or_command ) {
+  return String( _markerHead ) +
+         state_or_command +
+         String( _markerPref ) +
+         String( _markerFoot );
+} // method
+
+String ASSM_HELPER::mark_as_Data_starting( String individual_data_command ) {
+  return String( _markerHead ) +
+         individual_data_command +
+         String( _markerFoot );
+} // method
+
+String ASSM_HELPER::mark_as_Data_stopping( String individual_data_command ) {
+  return String( _markerHead ) +
+         String( _markerPref ) +
+         individual_data_command +
+         String( _markerFoot );
 } // method
 
 int ASSM_HELPER::a2i(const char *s)

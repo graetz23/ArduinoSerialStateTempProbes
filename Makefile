@@ -1,20 +1,22 @@
 #
 # Arduino Makefile; refer to https://github.com/sudar/Arduino-Makefile
 #
+# coolASSTCP
+#
 # Christian
 # graetz23@gmail.com
 # created 20191222
-# version 20200331
+# version 20200402
 
-#BOARD_TAG    = uno
+BOARD_TAG    = uno
 #BOARD_SUB    = atmega328p
-#include $(ARDUINO_DIR)/Arduino.mk
+include $(ARDUINO_DIR)/Arduino.mk
 #include /usr/share/doc/arduino-mk/Arduino.mk
 
 # --- leonardo (or pro micro w/leo bootloader)
-BOARD_TAG    = leonardo
+# BOARD_TAG    = leonardo
 #MONITOR_PORT = /dev/ttyACM0
-include $(ARDUINO_DIR)/Arduino.mk
+# include $(ARDUINO_DIR)/Arduino.mk
 #include /usr/share/arduino/Arduino.mk
 
 # --- mega2560 ide 1.0
