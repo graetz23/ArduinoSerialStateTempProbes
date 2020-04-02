@@ -9,7 +9,7 @@ Two projects are combined for coolASSTCP:
   - [cool Arduino serial state machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
   - [cool Arduino Temperature Cable Probe (coolATCP)](https://github.com/graetz23/coolArduinoTemperatureCableProbe),
 
-and extended by _extra serial commands_ to allow for requesting wach of the six temperatures cable probes (TCPs).
+and extended by _extra serial commands_ to allow for remotely requesting values of the six temperatures cable probes (TCPs).
 
 ### Building
 For building the HEX file, the [arduino Makefile](https://github.com/sudar/Arduino-Makefile) is used. Clone or download / unzip to your system and configure the _Makefile_ to your arduino board and where you have installed _arduino Makefile_ type: _make_. Alternatively you can include all files of this project in your [arduino IDE](https://www.arduino.cc/en/main/software).
@@ -20,14 +20,24 @@ Wire your NTC probe with a _matching_ (same resistor value as the probe) resisto
 However there are several public _posts_, _blogs_, and _vlogs_ on internet showing a schematic wiring diagram; _try searching_ for: _NTC arduino_ or _PTC arduino_.
 
 ### Usage
-Flash arduino, afterwards open a _serial client_, e.g. the _serial monitor (press CTRL+SHFT+m)_ of your arduino IDE. arduino is in STATE: _IDLE_ and waits for retrieving _COMMANDS_ from you. _COMMANDS_ have the syntax: <CMD_ID>; e.g. <2>, <3>, and so on; a listing of _all COMMANDS_ is [here](https://github.com/graetz23/coolArduinoSerialStateMachine#usage). arduino will replay in _IDLE_ to some of these _COMMANDs_; just try for.
+Flash arduino, afterwards open a _serial client_, e.g. the _serial monitor (press CTRL+SHFT+m)_ of your arduino IDE. arduino is in STATE: _IDLE_ and waits for retrieving _COMMANDS_ from you. _COMMANDS_ have the syntax: <CMD_ID>; e.g. <2>, <3>, and so on; a listing of _all COMMANDS_ is [here](https://github.com/graetz23/coolArduinoSerialStateMachine#usage). arduino will reply in _IDLE_ to some of these _COMMANDs_; just try for.
 
-For reading the temperature of _analog input A0_, try:
+However, for reading the temperature values of _analog input A0_, try:
   0. **<10>** ask _optionally_ for _STATUS_, and arduino should reply with: **<IDLE/>**; the current state,
   1. **<11>** tells arduino to go to another state: run _MODE1_; which is _overloaded_,
   2. **<70>** requests arduino to send _°C_ value of CTP at A0: **<A0>22.789</A0>**.
 
 For any other analog input: A1, A2, ,A5, try sending while in run _MODE1_: **<71>, <72>, ..,<75>**.
+
+The _extended_ COMMAND list by this project:
+  - **<70>** request temperature value in degree celsius (°C) of analog input **A0**,
+  - **<71>** request temperature value in degree celsius (°C) of analog input **A1**,
+  - **<72>** request temperature value in degree celsius (°C) of analog input **A2**,
+  - **<73>** request temperature value in degree celsius (°C) of analog input **A3**,
+  - **<74>** request temperature value in degree celsius (°C) of analog input **A4**,
+  - **<75>** request temperature value in degree celsius (°C) of analog input **A5**,
+
+if **arduino is procesing** in run **MODE1**; general COMMAND: **<11>**.
 
 For more details, see [_coolSSATCP.ino_](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.ino) file as _outer world usage_ example For an _own adapation_, e.g. for drving another LCD display, take a look to the _inner world_, see the [coolASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.cpp) as how to.
 
