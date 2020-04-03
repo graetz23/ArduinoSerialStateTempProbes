@@ -44,6 +44,14 @@ if **arduino is processing** in run **MODE1**; general COMMAND: **<11>**.
 
 For more details, see [coolSSATCP.ino](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/ASSTCP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [ASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/ASSTCP.cpp) and also [coolATCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolATCP.cpp) as how to change things inside.
 
+### Releases
+
+The following stable **releases** of ASSTCP [are available](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases):
+
+  - **v1** - **stable**; driving a I2C 16x2 LCD display additionally.
+
+**Try cloning** (git checkout \<SHA\>) or **download** and unzip **from** [**release page**](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases).
+
 ### Remarks
 I will use this project for driving several NTC probes in a home brewery system to monitor the temperatures independently, only using arduino and a 20x4 LCD display. The _brewery automation_ is driven by a _raspberry pi 2B_ running [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3 using [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine) as a basis for communicating with arduino; coolPSSM is the python aquivalent to [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).
 
