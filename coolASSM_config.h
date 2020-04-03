@@ -45,11 +45,11 @@
 // define the baud rate the arduino should run its serial ..
 // #define SERIAL_BAUD                      2400  // Baudrate
 // #define SERIAL_BAUD                      4800  // Baudrate
-// #define SERIAL_BAUD                         9600  // Baudrate
+#define SERIAL_BAUD                         9600  // Baudrate
 // #define SERIAL_BAUD                      19200  // Baudrate
 // #define SERIAL_BAUD                      38400  // Baudrate
 // #define SERIAL_BAUD                      57600  // Baudrate
-#define SERIAL_BAUD                      115200  // Baudrate
+// #define SERIAL_BAUD                      115200  // Baudrate
 
 /**
  * \brief the cool ASSM COMMANDs as IDs and STRINGs

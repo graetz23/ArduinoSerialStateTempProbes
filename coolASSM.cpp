@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200402
+ * version 20200403
  *
  * MIT License
  *
@@ -725,7 +725,7 @@ uint8_t ASSM::runMODE7( uint8_t command ) {
     // command, writes the data back to the client by:
     // <DATA>1;2;3;4;5;6;7;8;9;0</DATA>
     writeData_starting( "DATA" );
-    writeData( "1;2;3;4;5;6;7;8;9;0" );
+    writeData( "1.2;3.4;5.6" );
     writeData_stopping( "DATA" );
     // at the end arduino sends a DONE command
     writeCommand( ASSM_CMD_DONE );
