@@ -1,5 +1,5 @@
 /**
- * cool arduino serial state temperature cable probe (coolASSTCP)
+ * Arduino serial state temperature cable probe (ASSTCP)
  *
  * Christian
  * graetz23@gmail.com
@@ -8,7 +8,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2020 coolASSTCP Christian (graetz23@gmail.com)
+ * Copyright (c) 2020 ASSTCP Christian (graetz23@gmail.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@
 #include <SPI.h>
 #include <LiquidCrystal_I2C.h>
 
-#include "./coolASSTCP.h" // base class header file
+#include "./ASSTCP.h" // base class header file
 
 LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 

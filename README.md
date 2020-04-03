@@ -1,11 +1,11 @@
-## cool Arduino Serial State Temperature Cable Probe
+## Arduino Serial State Temperature Cable Probe
 
 ### Introduction
-cool Arduino Serial State Temperature Cable Probe (coolASSTCP) drives Negative and Positive Temperature Coefficient (NTC & PTC) probes on all available _analog inputs_, may display those on some _I2C_ driven _LCD display_, and cycles a _state machine_ that allows for remote controlling via _serial port_; e.g. using USB.
+Arduino Serial State Temperature Cable Probe (ASSTCP) drives Negative and Positive Temperature Coefficient (NTC & PTC) probes on all available _analog inputs_, may display those on some _I2C_ driven _LCD display_, and cycles a _state machine_ that allows for remote controlling via _serial port_; e.g. using USB.
 
-![photo of my coolASSTCP test bench](./coolASSTCP.jpg)
+![photo of my ASSTCP test bench](./ASSTCP.jpg)
 
-Two projects are combined for coolASSTCP:
+Two projects are combined for ASSTCP:
 
   - [cool Arduino serial state machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
   - [cool Arduino Temperature Cable Probe (coolATCP)](https://github.com/graetz23/coolArduinoTemperatureCableProbe),
@@ -42,7 +42,7 @@ The _extended_ COMMAND list by this project:
 
 if **arduino is processing** in run **MODE1**; general COMMAND: **<11>**.
 
-For more details, see [coolSSATCP.ino](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [coolASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolASSTCP.cpp) and also [coolATCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolATCP.cpp) as how to change things inside.
+For more details, see [coolSSATCP.ino](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/ASSTCP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [ASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/ASSTCP.cpp) and also [coolATCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolATCP.cpp) as how to change things inside.
 
 ### Remarks
 I will use this project for driving several NTC probes in a home brewery system to monitor the temperatures independently, only using arduino and a 20x4 LCD display. The _brewery automation_ is driven by a _raspberry pi 2B_ running [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3 using [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine) as a basis for communicating with arduino; coolPSSM is the python aquivalent to [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).

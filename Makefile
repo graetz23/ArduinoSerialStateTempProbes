@@ -14,9 +14,9 @@
 #include /usr/share/doc/arduino-mk/Arduino.mk
 
 # --- leonardo (or pro micro w/leo bootloader)
-# BOARD_TAG    = leonardo
+BOARD_TAG    = leonardo
 # MONITOR_PORT = /dev/ttyACM0
-# include $(ARDUINO_DIR)/Arduino.mk
+include $(ARDUINO_DIR)/Arduino.mk
 #include /usr/share/arduino/Arduino.mk
 
 # --- mega2560 ide 1.0
