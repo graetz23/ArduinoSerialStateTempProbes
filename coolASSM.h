@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200402
+ * version 20200404
  *
  * MIT License
  *
@@ -37,7 +37,7 @@
 
 #include "./coolASSM_config.h" // the COMMANDs and STATEs ..
 
-#define ASSM_DEBUG                          true
+#define ASSM_DEBUG                          false
 #define ASSM_DEBUG_SHOW_COMMAND             false
 #define ASSM_DEBUG_SHOW_COMMAND_INTERNAL    false
 #define ASSM_DEBUG_SHOW_STATE               false
@@ -175,59 +175,34 @@ protected:
   void writeCommand( String command );
 
   /*!
-   * \brief Send an INDIVIDUAL STARTING COMMAND to the CLIENT; pattern: <CMD>
-   * \param The COMMAND as some string
+   * \brief Send some tag and data to CLIENT
+   * \param the bare data .. <TAG>DATA</TAG>
    */
-  void writeData_starting( uint8_t individual_command );
+  void writeData( String tag, bool data );
 
   /*!
-   * \brief Send an INDIVIDUAL STARTING COMMAND to the CLIENT; pattern: <CMD>
-   * \param The COMMAND as some string
+   * \brief Send some tag and data to CLIENT
+   * \param the bare data .. <TAG>DATA</TAG>
    */
-  void writeData_starting( String individual_command );
+  void writeData( String tag, int data );
 
   /*!
-   * \brief Send an INDIVIDUAL STOPPING COMMAND to the CLIENT; pattern: </CMD>
-   * \param The COMMAND as some string
+   * \brief Send some tag and data to CLIENT
+   * \param the bare data .. <TAG>DATA</TAG>
    */
-  void writeData_stopping( uint8_t individual_command );
+  void writeData( String tag, float data, int digits, int precision );
 
   /*!
-   * \brief Send an INDIVIDUAL STOPPING COMMAND to the CLIENT; pattern: </CMD>
-   * \param The COMMAND as some string
+   * \brief Send some tag and data to CLIENT
+   * \param the bare data .. <TAG>DATA</TAG>
    */
-  void writeData_stopping( String individual_command );
-
-
-  /*!
-   * \brief Send some data to CLIENT
-   * \param the bare data ..
-   */
-  void writeData( String command );
+  void writeData( String tag, double data, int digits, int precision );
 
   /*!
-   * \brief Send some data to CLIENT
-   * \param the bare data ..
+   * \brief Send some tag and data to CLIENT
+   * \param the bare data .. <TAG>DATA</TAG>
    */
-  void writeData( float data );
-
-  /*!
-   * \brief Send some data to CLIENT
-   * \param the bare data by size of digits ..
-   */
-  void writeData( float data, int digits );
-
-  /*!
-   * \brief Send some data to CLIENT
-   * \param the bare data ..
-   */
-  void writeData( double data );
-
-  /*!
-   * \brief Send some data to CLIENT
-   * \param the bare data by size of digits ..
-   */
-  void writeData( double data, int digits );
+  void writeData( String tag, String data );
 
   /*!
    * \brief Display some string including current STATE and COMMAND

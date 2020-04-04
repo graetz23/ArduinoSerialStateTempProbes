@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200402
+ * version 20200404
  *
  * MIT License
  *
@@ -63,59 +63,48 @@ String ASSM_HELPER::command_to_String( uint8_t command ) {
     case ASSM_CMD_RUN :
  	    str = ASSM_CMD_RUN_STR;
  	  break;
-
     case ASSM_CMD_WAIT :
  	    str = ASSM_CMD_WAIT_STR;
  	   break;
-
-    case ASSM_CMD_EVENT :
- 	    str = ASSM_CMD_EVENT_STR;
+    case ASSM_CMD_EVNT :
+ 	    str = ASSM_CMD_EVNT_STR;
     break;
-
     case ASSM_CMD_DONE :
  	    str = ASSM_CMD_DONE_STR;
  	  break;
-
     case ASSM_CMD_STOP :
  	    str = ASSM_CMD_STOP_STR;
 	  break;
 
-    case ASSM_CMD_STATUS :
- 	    str = ASSM_CMD_STATUS_STR;
+    case ASSM_CMD_STAT :
+ 	    str = ASSM_CMD_STAT_STR;
  	   break;
+
+    case ASSM_CMD_RMD1 :
+ 	    str = ASSM_CMD_RMD1_STR;
+ 	  break;
+    case ASSM_CMD_RMD2 :
+ 	    str = ASSM_CMD_RMD2_STR;
+ 	  break;
+    case ASSM_CMD_RMD3 :
+ 	    str = ASSM_CMD_RMD3_STR;
+ 	  break;
+    case ASSM_CMD_RMD4 :
+ 	    str = ASSM_CMD_RMD4_STR;
+ 	  break;
+    case ASSM_CMD_RMD5 :
+ 	    str = ASSM_CMD_RMD5_STR;
+ 	  break;
+    case ASSM_CMD_RMD6 :
+ 	    str = ASSM_CMD_RMD6_STR;
+ 	  break;
+    case ASSM_CMD_RMD7 :
+ 	    str = ASSM_CMD_RMD7_STR;
+ 	  break;
 
     case ASSM_CMD_CNCT :
  	    str = ASSM_CMD_CNCT_STR;
  	  break;
-
-    case ASSM_CMD_RNMD1 :
- 	    str = ASSM_CMD_RNMD1_STR;
- 	  break;
-
-    case ASSM_CMD_RNMD2 :
- 	    str = ASSM_CMD_RNMD2_STR;
- 	  break;
-
-    case ASSM_CMD_RNMD3 :
- 	    str = ASSM_CMD_RNMD3_STR;
- 	  break;
-
-    case ASSM_CMD_RNMD4 :
- 	    str = ASSM_CMD_RNMD4_STR;
- 	  break;
-
-    case ASSM_CMD_RNMD5 :
- 	    str = ASSM_CMD_RNMD5_STR;
- 	  break;
-
-    case ASSM_CMD_RNMD6 :
- 	    str = ASSM_CMD_RNMD6_STR;
- 	  break;
-
-    case ASSM_CMD_RNMD7 :
- 	    str = ASSM_CMD_RNMD7_STR;
- 	  break;
-
     case ASSM_CMD_DCNT :
  	    str = ASSM_CMD_DCNT_STR;
  	  break;
@@ -137,35 +126,27 @@ String ASSM_HELPER::state_to_String( uint8_t state ) {
     case ASSM_STATE_ERROR :
       str = ASSM_STATE_ERROR_STR;
     break;
-
-    case ASSM_STATE_IDLE :
-      str = ASSM_STATE_IDLE_STR;
+    case ASSM_STATE_IDLNG :
+      str = ASSM_STATE_IDLNG_STR;
     break;
-
     case ASSM_STATE_MODE1 :
       str = ASSM_STATE_MODE1_STR;
     break;
-
     case ASSM_STATE_MODE2 :
       str = ASSM_STATE_MODE2_STR;
     break;
-
     case ASSM_STATE_MODE3 :
       str = ASSM_STATE_MODE3_STR;
     break;
-
     case ASSM_STATE_MODE4 :
       str = ASSM_STATE_MODE4_STR;
     break;
-
     case ASSM_STATE_MODE5 :
       str = ASSM_STATE_MODE5_STR;
     break;
-
     case ASSM_STATE_MODE6 :
       str = ASSM_STATE_MODE6_STR;
     break;
-
     case ASSM_STATE_MODE7 :
       str = ASSM_STATE_MODE7_STR;
     break;
@@ -184,10 +165,10 @@ String ASSM_HELPER::state_to_String( uint8_t state ) {
 uint8_t ASSM_HELPER::state_to_Integer( String state ) {
   uint8_t integer = 0;
   const char* cstate = state.c_str( );
-  if( strcmp( cstate, ASSM_STATE_ERROR_STR ) == 0 ) {
-    integer = ASSM_STATE_ERROR;
-  } else if( strcmp( cstate, ASSM_STATE_IDLE_STR ) == 0 ) {
-    integer = ASSM_STATE_IDLE;
+  if( strcmp( cstate, ASSM_HARD_ANLG0_STR ) == 0 ) {
+    integer = ASSM_HARD_ANLG0;
+  } else if( strcmp( cstate, ASSM_STATE_IDLNG_STR ) == 0 ) {
+    integer = ASSM_STATE_IDLNG;
   } else if( strcmp( cstate, ASSM_STATE_MODE1_STR ) == 0 ) {
     integer = ASSM_STATE_MODE1;
   } else if( strcmp( cstate, ASSM_STATE_MODE2_STR ) == 0 ) {
@@ -205,6 +186,85 @@ uint8_t ASSM_HELPER::state_to_Integer( String state ) {
   } // if
   return integer;
 } // method
+
+String ASSM_HELPER::hardware_to_String( uint8_t hardware ) {
+  String str = "";
+
+  switch( hardware ) {
+
+    case ASSM_HARD_ANLG0 :
+      str = ASSM_HARD_ANLG0_STR;
+    break;
+    case ASSM_HARD_ANLG1 :
+      str = ASSM_HARD_ANLG1_STR;
+    break;
+    case ASSM_HARD_ANLG2 :
+      str = ASSM_HARD_ANLG2_STR;
+    break;
+    case ASSM_HARD_ANLG3 :
+      str = ASSM_HARD_ANLG3_STR;
+    break;
+    case ASSM_HARD_ANLG4 :
+      str = ASSM_HARD_ANLG4_STR;
+    break;
+    case ASSM_HARD_ANLG5 :
+      str = ASSM_HARD_ANLG5_STR;
+    break;
+
+    case ASSM_HARD_GPIO0 :
+      str = ASSM_HARD_GPIO0_STR;
+    break;
+    case ASSM_HARD_GPIO1 :
+      str = ASSM_HARD_GPIO1_STR;
+    break;
+    case ASSM_HARD_GPIO2 :
+      str = ASSM_HARD_GPIO2_STR;
+    break;
+    case ASSM_HARD_GPIO3 :
+      str = ASSM_HARD_GPIO3_STR;
+    break;
+    case ASSM_HARD_GPIO4 :
+      str = ASSM_HARD_GPIO4_STR;
+    break;
+    case ASSM_HARD_GPIO5 :
+      str = ASSM_HARD_GPIO5_STR;
+    break;
+    case ASSM_HARD_GPIO6 :
+      str = ASSM_HARD_GPIO6_STR;
+    break;
+    case ASSM_HARD_GPIO7 :
+      str = ASSM_HARD_GPIO7_STR;
+    break;
+    case ASSM_HARD_GPIO8 :
+      str = ASSM_HARD_GPIO8_STR;
+    break;
+    case ASSM_HARD_GPIO9 :
+      str = ASSM_HARD_GPIO9_STR;
+    break;
+    case ASSM_HARD_GPIO10 :
+      str = ASSM_HARD_GPIO10_STR;
+    break;
+    case ASSM_HARD_GPIO11 :
+      str = ASSM_HARD_GPIO11_STR;
+    break;
+    case ASSM_HARD_GPIO12 :
+      str = ASSM_HARD_GPIO12_STR;
+    break;
+    case ASSM_HARD_GPIO13 :
+      str = ASSM_HARD_GPIO13_STR;
+    break;
+
+    // if HARDWARE is unkown, show the given HARWARE as a number
+    default :
+      char cstr[12];
+      sprintf(cstr, "%d", hardware);
+      str = String(cstr);
+    break;
+
+  } // switch
+  return str;
+} // method
+
 
 String ASSM_HELPER::mark_as_State_or_Command( String state_or_command ) {
   return String( _markerHead ) +
@@ -241,10 +301,16 @@ int ASSM_HELPER::a2i(const char *s)
   return num*sign;
 } // method
 
-String ASSM_HELPER::d2str( double d ) {
-  char c[12];
-  sprintf( c,"%d", d);
-  String str = "";
-  str = String( c );
+String ASSM_HELPER::toStr( float f, int digits, int precision ) {
+  char buffer[12]; // MAKE SURE this is BIG ENOUGH
+  dtostrf( f, digits, precision, buffer );
+  String str = String( buffer );
+  return str;
+} // method
+
+String ASSM_HELPER::toStr( double d, int digits, int precision ) {
+  char buffer[12]; // MAKE SURE this is BIG ENOUGH
+  dtostrf( d, digits, precision, buffer );
+  String str = String( buffer );
   return str;
 } // method

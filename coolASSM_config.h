@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20190511
- * version 20200402
+ * version 20200404
  *
  * MIT License
  *
@@ -54,48 +54,48 @@
 /**
  * \brief the cool ASSM COMMANDs as IDs and STRINGs
  */
-#define ASSM_CMD_NULL        0 // NULL or NO COMMAND; is handled as a CMD
-#define ASSM_CMD_NULL_STR    "NULL"
-#define ASSM_CMD_SNA         1 // service not available (SNA); go error state
-#define ASSM_CMD_SNA_STR     "SNA"
-#define ASSM_CMD_PING        2 // send a PING and try get a PONG response
-#define ASSM_CMD_PING_STR    "PING"
-#define ASSM_CMD_PONG        3 // send a PONG for a PING receive
-#define ASSM_CMD_PONG_STR    "PONG"
-#define ASSM_CMD_AKNW        4 // ACKNOWLEDGE a received command
-#define ASSM_CMD_AKNW_STR    "AKNW"
-#define ASSM_CMD_RUN         5 // signal to WAIT to CLIENT or SERVER
-#define ASSM_CMD_RUN_STR     "RUN"
-#define ASSM_CMD_WAIT        6 // signal to WAIT to CLIENT or SERVER
-#define ASSM_CMD_WAIT_STR    "WAIT"
-#define ASSM_CMD_EVENT       7 // signal an EVENT to CLIENT or SERVER
-#define ASSM_CMD_EVENT_STR   "EVENT"
-#define ASSM_CMD_DONE        8 // send a STOP to CLIENT or SERVER
-#define ASSM_CMD_DONE_STR    "DONE"
-#define ASSM_CMD_STOP        9 // send a STOP to CLIENT or SERVER
-#define ASSM_CMD_STOP_STR    "STOP"
-#define ASSM_CMD_STATUS      10 // request the STATUS of CLIENT or SERVER
-#define ASSM_CMD_STATUS_STR  "STATUS"
-// define different RUN MODES ..
-#define ASSM_CMD_RNMD1      11 // let arduino do something while in run MODE 1
-#define ASSM_CMD_RNMD1_STR  "RNMD1"
-#define ASSM_CMD_RNMD2      12 // let arduino do something while in run MODE 2
-#define ASSM_CMD_RNMD2_STR  "RNMD2"
-#define ASSM_CMD_RNMD3      13 // let arduino do something while in run MODE 3
-#define ASSM_CMD_RNMD3_STR  "RNMD3"
-#define ASSM_CMD_RNMD4      14 // let arduino do something while in run MODE 4
-#define ASSM_CMD_RNMD4_STR  "RNMD4"
-#define ASSM_CMD_RNMD5      15 // let arduino do something while in run MODE 5
-#define ASSM_CMD_RNMD5_STR  "RNMD5"
-#define ASSM_CMD_RNMD6      16 // let arduino do something while in run MODE 6
-#define ASSM_CMD_RNMD6_STR  "RNMD6"
-#define ASSM_CMD_RNMD7      17 // let arduino do something while in run MODE 7
-#define ASSM_CMD_RNMD7_STR  "RNMD7"
+#define ASSM_CMD_NULL     0 // NULL or NO COMMAND; is handled as a CMD
+#define ASSM_CMD_NULL_STR "NULL"
+#define ASSM_CMD_SNA      1 // service not available (SNA); go error state
+#define ASSM_CMD_SNA_STR  "SNA"
+#define ASSM_CMD_PING     2 // send a PING and try get a PONG response
+#define ASSM_CMD_PING_STR "PING"
+#define ASSM_CMD_PONG     3 // send a PONG for a PING receive
+#define ASSM_CMD_PONG_STR "PONG"
+#define ASSM_CMD_AKNW     4 // ACKNOWLEDGE a received command
+#define ASSM_CMD_AKNW_STR "AKNW"
+#define ASSM_CMD_RUN      5 // signal to WAIT to CLIENT or SERVER
+#define ASSM_CMD_RUN_STR  "RUN"
+#define ASSM_CMD_WAIT     6 // signal to WAIT to CLIENT or SERVER
+#define ASSM_CMD_WAIT_STR "WAIT"
+#define ASSM_CMD_EVNT     7 // signal an EVENT to CLIENT or SERVER
+#define ASSM_CMD_EVNT_STR "EVNT"
+#define ASSM_CMD_DONE     8 // send a STOP to CLIENT or SERVER
+#define ASSM_CMD_DONE_STR "DONE"
+#define ASSM_CMD_STOP     9 // send a STOP to CLIENT or SERVER
+#define ASSM_CMD_STOP_STR "STOP"
+#define ASSM_CMD_STAT     10 // request the STATUS of CLIENT or SERVER
+#define ASSM_CMD_STAT_STR "STAT"
+// define different RUN MODEs ..
+#define ASSM_CMD_RMD1     11 // let arduino do something while in run MODE 1
+#define ASSM_CMD_RMD1_STR "RMD1"
+#define ASSM_CMD_RMD2     12 // let arduino do something while in run MODE 2
+#define ASSM_CMD_RMD2_STR "RMD2"
+#define ASSM_CMD_RMD3     13 // let arduino do something while in run MODE 3
+#define ASSM_CMD_RMD3_STR "RMD3"
+#define ASSM_CMD_RMD4     14 // let arduino do something while in run MODE 4
+#define ASSM_CMD_RMD4_STR "RMD4"
+#define ASSM_CMD_RMD5     15 // let arduino do something while in run MODE 5
+#define ASSM_CMD_RMD5_STR "RMD5"
+#define ASSM_CMD_RMD6     16 // let arduino do something while in run MODE 6
+#define ASSM_CMD_RMD6_STR "RMD6"
+#define ASSM_CMD_RMD7     17 // let arduino do something while in run MODE 7
+#define ASSM_CMD_RMD7_STR "RMD7"
 // CONNECT and DISCONNECT COMMANDs; not really necessary
-#define ASSM_CMD_CNCT     18 // CONNECT and ready for COMMANDs
-#define ASSM_CMD_CNCT_STR "CNCT"
-#define ASSM_CMD_DCNT     19 // DISCONNECT from SERVER
-#define ASSM_CMD_DCNT_STR "DCNT"
+#define ASSM_CMD_CNCT      18 // CONNECT and ready for COMMANDs
+#define ASSM_CMD_CNCT_STR  "CNCT"
+#define ASSM_CMD_DCNT      19 // DISCONNECT from SERVER
+#define ASSM_CMD_DCNT_STR  "DCNT"
 // ALL other COMMAND values are application specific and should be defined in
 // by extending the this class. In parallel one should overload the methods
  // of error, idle, and run_MODE1, run_MODE2, .. ,run_MODE7.
@@ -103,26 +103,70 @@
 /*!
  * \brief The cool ASSM STATEs
  */
-#define ASSM_STATE_ERROR        0
-#define ASSM_STATE_ERROR_STR    "ERROR"
-#define ASSM_STATE_IDLE         1
-#define ASSM_STATE_IDLE_STR     "IDLE"
+#define ASSM_STATE_ERROR     0
+#define ASSM_STATE_ERROR_STR "ERROR"
+#define ASSM_STATE_IDLNG     1
+#define ASSM_STATE_IDLNG_STR "IDLNG"
 // the defined run MODES of arduino to do different jobs
-#define ASSM_STATE_MODE1      11
-#define ASSM_STATE_MODE1_STR  "MODE1"
-#define ASSM_STATE_MODE2      12
-#define ASSM_STATE_MODE2_STR  "MODE1"
-#define ASSM_STATE_MODE3      13
-#define ASSM_STATE_MODE3_STR  "MODE1"
-#define ASSM_STATE_MODE4      14
-#define ASSM_STATE_MODE4_STR  "MODE1"
-#define ASSM_STATE_MODE5      15
-#define ASSM_STATE_MODE5_STR  "MODE1"
-#define ASSM_STATE_MODE6      16
-#define ASSM_STATE_MODE6_STR  "MODE1"
-#define ASSM_STATE_MODE7      17
-#define ASSM_STATE_MODE7_STR  "MODE7"
+#define ASSM_STATE_MODE1     11
+#define ASSM_STATE_MODE1_STR "MODE1"
+#define ASSM_STATE_MODE2     12
+#define ASSM_STATE_MODE2_STR "MODE1"
+#define ASSM_STATE_MODE3     13
+#define ASSM_STATE_MODE3_STR "MODE1"
+#define ASSM_STATE_MODE4     14
+#define ASSM_STATE_MODE4_STR "MODE1"
+#define ASSM_STATE_MODE5     15
+#define ASSM_STATE_MODE5_STR "MODE1"
+#define ASSM_STATE_MODE6     16
+#define ASSM_STATE_MODE6_STR "MODE1"
+#define ASSM_STATE_MODE7     17
+#define ASSM_STATE_MODE7_STR "MODE7"
 
+/*!
+ * \brief The cool ASSM HARDWARE; doing leetspeak ..
+ */
+ #define ASSM_HARD_ANLG0      40
+ #define ASSM_HARD_ANLG0_STR  "A0"
+ #define ASSM_HARD_ANLG1      41
+ #define ASSM_HARD_ANLG1_STR  "A1"
+ #define ASSM_HARD_ANLG2      42
+ #define ASSM_HARD_ANLG2_STR  "A2"
+ #define ASSM_HARD_ANLG3      43
+ #define ASSM_HARD_ANLG3_STR  "A3"
+ #define ASSM_HARD_ANLG4      44
+ #define ASSM_HARD_ANLG4_STR  "A4"
+ #define ASSM_HARD_ANLG5      45
+ #define ASSM_HARD_ANLG5_STR  "A5"
+
+ #define ASSM_HARD_GPIO0      60
+ #define ASSM_HARD_GPIO0_STR  "GPIO0"
+ #define ASSM_HARD_GPIO1      61
+ #define ASSM_HARD_GPIO1_STR  "GPIO1"
+ #define ASSM_HARD_GPIO2      62
+ #define ASSM_HARD_GPIO2_STR  "GPIO2"
+ #define ASSM_HARD_GPIO3      63
+ #define ASSM_HARD_GPIO3_STR  "GPIO3"
+ #define ASSM_HARD_GPIO4      64
+ #define ASSM_HARD_GPIO4_STR  "GPIO4"
+ #define ASSM_HARD_GPIO5      65
+ #define ASSM_HARD_GPIO5_STR  "GPIO5"
+ #define ASSM_HARD_GPIO6      66
+ #define ASSM_HARD_GPIO6_STR  "GPIO6"
+ #define ASSM_HARD_GPIO7      67
+ #define ASSM_HARD_GPIO7_STR  "GPIO7"
+ #define ASSM_HARD_GPIO8      68
+ #define ASSM_HARD_GPIO8_STR  "GPIO8"
+ #define ASSM_HARD_GPIO9      69
+ #define ASSM_HARD_GPIO9_STR  "GPIO9"
+ #define ASSM_HARD_GPIO10     70
+ #define ASSM_HARD_GPIO10_STR "GPIO10"
+ #define ASSM_HARD_GPIO11     71
+ #define ASSM_HARD_GPIO11_STR "GPIO11"
+ #define ASSM_HARD_GPIO12     72
+ #define ASSM_HARD_GPIO12_STR "GPIO12"
+ #define ASSM_HARD_GPIO13     73
+ #define ASSM_HARD_GPIO13_STR "GPIO13"
 
 /*!
  * a Helper for converting COMMANDs and STATEs from ID to String & vice versa
@@ -166,6 +210,12 @@ public:
   uint8_t state_to_Integer( String state );
 
   /*!
+   * \brief read a HARDWARE as integer and hand back the matching string
+   * \return the HARDWARE as string
+   */
+  String hardware_to_String( uint8_t hardware );
+
+  /*!
    * \brief receives a string and adds some marking to be a state or command:
    *        pattern: <STATE/> or <COMMAND/>
    * \return the string as marked state or command
@@ -187,11 +237,18 @@ public:
   String mark_as_Data_stopping( String individual_data_command );
 
   /*!
+   * \brief converts a float to a String
+   * \param the double value
+   * \return the correspoding string; e.g. "16.84"
+   */
+   String toStr( float f, int digits, int precision );
+
+  /*!
    * \brief converts a double to a String
    * \param the double value
    * \return the correspoding string; e.g. "16.84"
    */
-   String d2str( double d );
+   String toStr( double d, int digits, int precision );
 
 private: // some stuff that's not so interesting
 

@@ -27,18 +27,18 @@ However, for reading the temperature values of _analog input A0_, try:
 
   0. **<10>** ask _optionally_ for _STATUS_, and arduino should reply with: **<IDLE/>**; the current state,
   1. **<11>** tells arduino to go to another state: run _MODE1_; which is _overloaded_,
-  2. **<70>** requests arduino to send _°C_ value of CTP at A0: **<A0>22.789</A0>**.
+  2. **<40>** requests arduino to send _°C_ value of CTP at A0: **<A0>22.789</A0>**.
 
-For any other analog input: A1, A2, ,A5, try sending while in run _MODE1_: **<71>, <72>, ..,<75>**.
+For any other analog input: A1, A2, ,A5, try sending while in run _MODE1_: **<41>, <42>, ..,<45>**.
 
 The _extended_ COMMAND list by this project:
 
-  - **<70>** request temperature value in degree celsius (°C) of analog input **A0**,
-  - **<71>** request temperature value in degree celsius (°C) of analog input **A1**,
-  - **<72>** request temperature value in degree celsius (°C) of analog input **A2**,
-  - **<73>** request temperature value in degree celsius (°C) of analog input **A3**,
-  - **<74>** request temperature value in degree celsius (°C) of analog input **A4**,
-  - **<75>** request temperature value in degree celsius (°C) of analog input **A5**,
+  - **<40>** request temperature value in degree celsius (°C) of analog input **A0**,
+  - **<41>** request temperature value in degree celsius (°C) of analog input **A1**,
+  - **<42>** request temperature value in degree celsius (°C) of analog input **A2**,
+  - **<43>** request temperature value in degree celsius (°C) of analog input **A3**,
+  - **<44>** request temperature value in degree celsius (°C) of analog input **A4**,
+  - **<45>** request temperature value in degree celsius (°C) of analog input **A5**,
 
 if **arduino is processing** in run **MODE1**; general COMMAND: **<11>**.
 
@@ -48,7 +48,8 @@ For more details, see [coolSSATCP.ino](https://github.com/graetz23/coolArduinoSe
 
 The following stable **releases** of ASSTCP [are available](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases):
 
-  - **v1** - **stable**; driving a I2C 16x2 LCD display additionally.
+  - **v1.1** - changed _analog_ IDs from 7x to 4x; e.g. <40> .. doin' leetspeak.
+  - **v1** - driving a I2C 16x2 LCD display additionally.
 
 **Try cloning** (git checkout \<SHA\>) or **download** and unzip **from** [**release page**](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases).
 
@@ -63,7 +64,15 @@ Everything was coded using:
   - [**Gnome**](https://www.gnome.org/) as window manager,
   - and [**debian**](https://www.debian.org/) GNU/Linux.
 
+have fun :-)
+
 ## ChangeLog
+
+**20200404**
+  - changed COMMANDs from <7x> to <4x>
+  - updated [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine)
+  - updated [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine):
+    - coolPSSM request in a loop analog data A0 from this project flashed to arduino.
 
 **20200402**
   - matching to coolASSM verions 20200402:

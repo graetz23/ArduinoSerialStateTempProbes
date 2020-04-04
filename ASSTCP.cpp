@@ -74,17 +74,17 @@ void ASSTCP::displayProbe( int id ) {
   double tempAx = _atcp->readNTCProbe_Celsius( id );
   String id_str = "";
   if ( id == 0 ) {
-    id_str = "A0";
+    id_str = ASSM_HARD_ANLG0_STR;
   } else if( id == 1 ) {
-    id_str = "A1";
+    id_str = ASSM_HARD_ANLG1_STR;
   } else if( id == 2 ) {
-    id_str = "A2";
+    id_str = ASSM_HARD_ANLG2_STR;
   } else if( id == 3 ) {
-    id_str = "A3";
+    id_str = ASSM_HARD_ANLG3_STR;
   } else if( id == 4 ) {
-    id_str = "A4";
+    id_str = ASSM_HARD_ANLG4_STR;
   } else if( id == 5 ) {
-    id_str = "A5";
+    id_str = ASSM_HARD_ANLG5_STR;
   } else {
     id_str = "Ax";
   } // if
@@ -118,43 +118,31 @@ uint8_t ASSTCP::processing( uint8_t command ) {
 
   double temp = 0.0;
 
-  if( command == 70 ) {
+  if( command == ASSM_HARD_ANLG0 ) {
     _mementoID = 0; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeData_starting( "A0" );
-    writeData( temp );
-    writeData_stopping( "A0" );
-  } else if( command == 71 ) {
+    writeData( ASSM_HARD_ANLG0_STR, temp, 6, 4 );
+  } else if( command == ASSM_HARD_ANLG1 ) {
     _mementoID = 1; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeData_starting( "A1" );
-    writeData( temp );
-    writeData_stopping( "A1" );
-  } else if( command == 72 ) {
+    writeData( ASSM_HARD_ANLG1_STR, temp, 6, 4 );
+  } else if( command == ASSM_HARD_ANLG2 ) {
     _mementoID = 2; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
     temp = _atcp->readNTCProbe_Celsius( 2 );
-    writeData_starting( "A2" );
-    writeData( temp );
-    writeData_stopping( "A2" );
-  } else if( command == 73 ) {
+    writeData( ASSM_HARD_ANLG2_STR, temp, 6, 4 );
+  } else if( command == ASSM_HARD_ANLG3 ) {
     _mementoID = 3; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeData_starting( "A3" );
-    writeData( temp );
-    writeData_stopping( "A3" );
-  } else if( command == 74 ) {
+    writeData( ASSM_HARD_ANLG3_STR, temp, 6, 4 );
+  } else if( command == ASSM_HARD_ANLG4 ) {
     _mementoID = 4; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeData_starting( "A4" );
-    writeData( temp );
-    writeData_stopping( "A4" );
-  } else if( command == 75 ) {
+    writeData( ASSM_HARD_ANLG4_STR, temp, 6, 4 );
+  } else if( command == ASSM_HARD_ANLG5 ) {
     _mementoID = 5; // only used for repeating last request on display
     temp = _atcp->readNTCProbe_Celsius( _mementoID );
-    writeData_starting( "A5" );
-    writeData( temp );
-    writeData_stopping( "A5" );
+    writeData( ASSM_HARD_ANLG5_STR, temp, 6, 4 );
   } else {
     // do nothing ..
   } // if
@@ -199,6 +187,8 @@ uint8_t ASSTCP::runMODE1( uint8_t command ) {
 
   // if( command != _command )
   //   lcd.clear( ); // quick help on changing states ..
+
+  delay(100);
 
   return next_command;
 
