@@ -7,7 +7,7 @@ Arduino Serial State Temperature Cable Probe (ASSTCP) drives Negative and Positi
 
 Two projects are combined for ASSTCP:
 
-  - [cool Arduino serial state machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
+  - [cool Arduino Serial State Machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
   - [cool Arduino Temperature Cable Probe (coolATCP)](https://github.com/graetz23/coolArduinoTemperatureCableProbe),
 
 and extended by _extra serial commands_ to allow for remotely requesting values of the six temperatures cable probes (TCPs).
