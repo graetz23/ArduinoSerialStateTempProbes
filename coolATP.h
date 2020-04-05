@@ -1,14 +1,14 @@
 /**
- * coolATCP - cool arduino cable temperature probe (coolATCP)
+ * coolATP - cool arduino temperature probes (coolATP)
  *
  * Christian
  * graetz23@gmail.com
  * created 20191222
- * version 20200331
+ * version 20200405
  *
  * MIT License
  *
- * Copyright (c) 2019-2020 coolATCP Christian (graetz23@gmail.com)
+ * Copyright (c) 2019-2020 coolATP Christian (graetz23@gmail.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,30 +28,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef __ARDUINO_coolATCP_H__
-#define __ARDUINO_coolATCP_H__
+#ifndef __ARDUINO_coolATP_H__
+#define __ARDUINO_coolATP_H__
 
 #include <Arduino.h>
 
-#define ATCP_DEBUG true;
+#define ATP_DEBUG true;
 
-#define ATCP_PIN_PROBE_0 A0 // TODO let this be an array
-#define ATCP_PIN_PROBE_0_ID 0 // TODO let this be an array
-#define ATCP_PIN_PROBE_1 A1 // TODO let this be an array
-#define ATCP_PIN_PROBE_1_ID 1 // TODO let this be an array
-#define ATCP_PIN_PROBE_2 A2 // TODO let this be an array
-#define ATCP_PIN_PROBE_2_ID 2 // TODO let this be an array
-#define ATCP_PIN_PROBE_3 A3 // TODO let this be an array
-#define ATCP_PIN_PROBE_3_ID 3 // TODO let this be an array
-#define ATCP_PIN_PROBE_4 A4 // TODO let this be an array
-#define ATCP_PIN_PROBE_4_ID 4 // TODO let this be an array
-#define ATCP_PIN_PROBE_5 A0 // TODO let this be an array
-#define ATCP_PIN_PROBE_5_ID 5 // TODO let this be an array
+#define ATP_PIN_PROBE_0 A0   // TODO let this be an array
+#define ATP_PIN_PROBE_0_ID 0 // TODO let this be an array
+#define ATP_PIN_PROBE_1 A1   // TODO let this be an array
+#define ATP_PIN_PROBE_1_ID 1 // TODO let this be an array
+#define ATP_PIN_PROBE_2 A2   // TODO let this be an array
+#define ATP_PIN_PROBE_2_ID 2 // TODO let this be an array
+#define ATP_PIN_PROBE_3 A3   // TODO let this be an array
+#define ATP_PIN_PROBE_3_ID 3 // TODO let this be an array
+#define ATP_PIN_PROBE_4 A4   // TODO let this be an array
+#define ATP_PIN_PROBE_4_ID 4 // TODO let this be an array
+#define ATP_PIN_PROBE_5 A0   // TODO let this be an array
+#define ATP_PIN_PROBE_5_ID 5 // TODO let this be an array
 
 /**
- * The cool ATCP - cool arduino cable temperature probe
+ * The cool ATP - cool arduino temperature probes
  */
-class ATCP {
+class ATP {
 
 private:
 
@@ -72,12 +72,12 @@ public:
   /*!
    * \brief Constructor used for 10 k Ohm and an analog resolution of 1024.
    */
-  ATCP( void );
+  ATP( void );
 
   /*!
    * \brief Destructor
    */
-  virtual ~ATCP( void );
+  virtual ~ATP( void );
 
   /*!
    * \brief Call this to set your base conditions
@@ -90,24 +90,24 @@ public:
   virtual void loop( void );
 
   /*!
-   * \brief call this to read the analog value of a NTC probe of certain ID;
+   * \brief call this to read the analog value of a NTC probes of certain ID;
    * e.g. id = 0 => input A0 on arduino.
    */
    double readNTCProbe( int id );
 
    /*!
-    * \brief call this to read the resistor value of a NTC probe of certain ID.
+    * \brief call this to read the resistor value of a NTC probes of certain ID.
     */
    double readNTCProbe_resistor( int id );
 
    /*!
-    * \brief call this to read the kelvin value of a NTC probe of certain ID.
+    * \brief call this to read the kelvin value of a NTC probes of certain ID.
     */
    double readNTCProbe_kelvin( int id );
 
    /*!
     * \brief call this to read the temperature value in degree celsius  of a
-    * NTC probe of certain ID.
+    * NTC probes of certain ID.
     */
    double readNTCProbe_Celsius( int id );
 

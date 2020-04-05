@@ -1,16 +1,16 @@
-## Arduino Serial State Temperature Cable Probe
+## Arduino Serial State Temperature Probes
 
 ### Introduction
-Arduino Serial State Temperature Cable Probe (ASSTCP) drives Negative and Positive Temperature Coefficient (NTC & PTC) probes on all available _analog inputs_, may display those on some _I2C_ driven _LCD display_, and cycles a _state machine_ that allows for remote controlling via _serial port_; e.g. using USB.
+Arduino Serial State Temperature Cable Probes (ASSTP) drives Negative and Positive Temperature Coefficient (NTC & PTC; [thermistors](https://en.wikipedia.org/wiki/Thermistor)) probes on all available _analog inputs_, may display those on some _I2C_ driven _LCD display_, and cycles a _state machine_ that allows for remote controlling via _serial port_; e.g. using USB.
 
-![photo of my ASSTCP test bench](./ASSTCP.jpg)
+![photo of my ASSTP test bench](./ASSTP.jpg)
 
-Two projects are combined for ASSTCP:
+Two projects are combined for ASSTP:
 
   - [cool Arduino Serial State Machine (coolASSM)](https://github.com/graetz23/coolArduinoSerialStateMachine),
-  - [cool Arduino Temperature Cable Probe (coolATCP)](https://github.com/graetz23/coolArduinoTemperatureCableProbe),
+  - [cool Arduino Temperature Probes (coolATP)](https://github.com/graetz23/coolArduinoTempProbes),
 
-and extended by _extra serial commands_ to allow for remotely requesting values of the six temperatures cable probes (TCPs).
+and extended by _extra serial commands_ to allow for remotely requesting values of the six temperatures cable probes (TPs).
 
 ### Building
 For building the HEX file, the [arduino Makefile](https://github.com/sudar/Arduino-Makefile) is used. Clone or download / unzip to your system and configure the _Makefile_ to your arduino board and where you have installed _arduino Makefile_ type: _make_. Alternatively you can include all files of this project in your [arduino IDE](https://www.arduino.cc/en/main/software).
@@ -42,19 +42,20 @@ The _extended_ COMMAND list by this project:
 
 if **arduino is processing** in run **MODE1**; general COMMAND: **<11>**.
 
-For more details, see [coolSSATCP.ino](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/ASSTCP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [ASSTCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/ASSTCP.cpp) and also [coolATCP.cpp](https://github.com/graetz23/coolArduinoSerialStateTCP/blob/master/coolATCP.cpp) as how to change things inside.
+For more details, see [coolSSATP.ino](https://github.com/graetz23/coolArduinoSerialStateTempProbes/blob/master/ASSTP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [ASSTP.cpp](https://github.com/graetz23/coolArduinoSerialStateTempProbes/blob/master/ASSTP.cpp) and also [coolATP.cpp](https://github.com/graetz23/coolArduinoSerialStateTempProbes/blob/master/coolATP.cpp) as how to change things inside.
 
 ### Releases
 
-The following stable **releases** of ASSTCP [are available](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases):
+The following stable **releases** of ASSTP [are available](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases):
 
+  - **v1.2** - renamed repo \& porject ot Arduino Serial State Temp Probes.
   - **v1.1** - changed _analog_ IDs from 7x to 4x; e.g. <40> .. doin' leetspeak.
   - **v1** - driving a I2C 16x2 LCD display additionally.
 
 **Try cloning** (git checkout \<SHA\>) or **download** and unzip **from** [**release page**](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases).
 
 ### Remarks
-I will use this project for driving several NTC probes in a home brewery system to monitor the temperatures independently, only using arduino and a 20x4 LCD display. The _brewery automation_ is driven by a _raspberry pi 2B_ running [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3 using [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine) as a basis for communicating with arduino; coolPSSM is the python aquivalent to [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).
+I will use this project for driving several NTC probes in a home brewery system to monitor the temperatures independently, only using arduino and a 20x4 LCD display. The _brewery automation_ is driven by a _raspberry pi 2B_ running [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3: [craftbeerpi3ArduinoTempProbes](https://github.com/graetz23/craftbeerpi3ArduinoTempProbes) using [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine) as a basis for communicating with arduino; coolPSSM is the python aquivalent that runs on ardiono as a basis [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).
 
 Everything was coded using:
 
@@ -89,4 +90,4 @@ have fun :-)
 **20200331**
   - adding MIT License to all files.
   - adding the README.md for explanation,
-  - setting up reository on [github.com](https://github.com/graetz23/coolArduinoSerialStateTCP).
+  - setting up reository on [github.com](https://github.com/graetz23/coolArduinoSerialStateTempProbes).

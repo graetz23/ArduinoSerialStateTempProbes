@@ -1,5 +1,5 @@
 /**
- * Arduino serial state temperature cable probe (ASSTCP)
+ * Arduino serial state temperature probes (ASSTP)
  *
  * Christian
  * graetz23@gmail.com
@@ -8,7 +8,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2020 ASSTCP Christian (graetz23@gmail.com)
+ * Copyright (c) 2020 ASSTP Christian (graetz23@gmail.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,13 +33,13 @@
 #include <SPI.h>
 #include <LiquidCrystal_I2C.h>
 
-#include "./ASSTCP.h" // cool arduino serial state machine
+#include "./ASSTP.h" // cool arduino serial state machine
 
 // LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 #define POWER 7 // arduino's built-in LED
 
-ASSTCP asstcp; // serial state machine object
+ASSTP asstp; // serial state machine object
 
 void setup( ) {
 
@@ -48,13 +48,13 @@ void setup( ) {
   digitalWrite(POWER, HIGH); // sets the digital pin LED on
 
   // initialize the serial state machine
-  asstcp.setup( );
+  asstp.setup( );
 
 } // method
 
 void loop( ) {
 
-  asstcp.loop( ); // loop serial state machine reading and sending values
+  asstp.loop( ); // loop serial state machine reading and sending values
 
   delay( 10 ); // 10 ms
 } // method

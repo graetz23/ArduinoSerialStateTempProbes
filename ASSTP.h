@@ -1,5 +1,5 @@
 /**
- * arduino serial state temperature cable probe (ASSTCP)
+ * arduino serial state temperature probes (ASSTP)
  *
  * Christian
  * graetz23@gmail.com
@@ -8,7 +8,7 @@
  *
  * MIT License
  *
- * Copyright (c) 2020 ASSTCP Christian (graetz23@gmail.com)
+ * Copyright (c) 2020 ASSTP Christian (graetz23@gmail.com)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,32 +28,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef __ARDUINO_COOLASSTCP_H__
-#define __ARDUINO_COOLASSTCP_H__
+#ifndef __ARDUINO_COOLASSTP_H__
+#define __ARDUINO_COOLASSTP_H__
 
 #include <Arduino.h>
 #include <Wire.h>
 #include <SPI.h>
 
 #include "./coolASSM.h" // the COMMANDs and STATEs ..
-#include "./coolATCP.h" // cool arduino temperature cable probes
+#include "./coolATP.h" // cool arduino temperature probes
 
 /*!
  * \brief The cool ASSM - the cool arduino serial state machine
  */
-class ASSTCP : public ASSM {
+class ASSTP : public ASSM {
 
 public:
 
   /*!
    * \brief Constructor
    */
-  ASSTCP( void );
+  ASSTP( void );
 
   /*!
    * \brief Destructor; virtual to have it called
    */
-  virtual ~ASSTCP( void );
+  virtual ~ASSTP( void );
 
   /*!
    * \brief Call this to set your base conditions
@@ -63,7 +63,7 @@ public:
 private:
 
   /*!
-   * \brief does all the probe reading and sending to serial job
+   * \brief does all the probes reading and sending to serial job
    */
   uint8_t processing( uint8_t command );
 
@@ -82,12 +82,12 @@ private:
    */
   virtual uint8_t runMODE1( uint8_t command );
 
-  ATCP* _atcp; // cable temperature probe pointer
+  ATP* _atp; // temperature probes
 
   // some extra for visualization via I2C 20x2 LCD
 
   /*!
-   * \brief display probe value and celsius by given ID
+   * \brief display probes value and celsius by given ID
    * on some I2C 20x2 LCD display ..
    */
   void displayProbe( int id );
