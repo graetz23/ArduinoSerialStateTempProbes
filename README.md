@@ -48,7 +48,7 @@ For more details, see [coolSSATP.ino](https://github.com/graetz23/ArduinoSerialS
 
 The following stable **releases** of ASSTP [are available](https://github.com/graetz23/ArduinoSerialStateTempProbes/releases):
 
-  - **v1.2** - renamed repo \& porject ot Arduino Serial State Temp Probes.
+  - **v1.2** - renamed repo \& porject to Arduino Serial State Temp Probes.
   - **v1.1** - changed _analog_ IDs from 7x to 4x; e.g. <40> .. doin' leetspeak.
   - **v1** - driving a I2C 16x2 LCD display additionally.
 
