@@ -42,17 +42,17 @@ The _extended_ COMMAND list by this project:
 
 if **arduino is processing** in run **MODE1**; general COMMAND: **<11>**.
 
-For more details, see [coolSSATP.ino](https://github.com/graetz23/coolArduinoSerialStateTempProbes/blob/master/ASSTP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [ASSTP.cpp](https://github.com/graetz23/coolArduinoSerialStateTempProbes/blob/master/ASSTP.cpp) and also [coolATP.cpp](https://github.com/graetz23/coolArduinoSerialStateTempProbes/blob/master/coolATP.cpp) as how to change things inside.
+For more details, see [coolSSATP.ino](https://github.com/graetz23/ArduinoSerialStateTempProbes/blob/master/ASSTP.ino) file as _outer world usage_ example. For an _own adapation_, e.g. for driving another type / size of LCD display, take a look to the _inner world_, see the [ASSTP.cpp](https://github.com/graetz23/ArduinoSerialStateTempProbes/blob/master/ASSTP.cpp) and also [coolATP.cpp](https://github.com/graetz23/coolArduinoTempProbes/blob/master/coolATP.cpp) as how to change things inside.
 
 ### Releases
 
-The following stable **releases** of ASSTP [are available](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases):
+The following stable **releases** of ASSTP [are available](https://github.com/graetz23/ArduinoSerialStateTempProbes/releases):
 
   - **v1.2** - renamed repo \& porject ot Arduino Serial State Temp Probes.
   - **v1.1** - changed _analog_ IDs from 7x to 4x; e.g. <40> .. doin' leetspeak.
   - **v1** - driving a I2C 16x2 LCD display additionally.
 
-**Try cloning** (git checkout \<SHA\>) or **download** and unzip **from** [**release page**](https://github.com/graetz23/ArduinoSerialStateTempCableProbe/releases).
+**Try cloning** (git checkout \<SHA\>) or **download** and unzip **from** [**release page**](https://github.com/graetz23/ArduinoSerialStateTempProbes/releases).
 
 ### Remarks
 I will use this project for driving several NTC probes in a home brewery system to monitor the temperatures independently, only using arduino and a 20x4 LCD display. The _brewery automation_ is driven by a _raspberry pi 2B_ running [**CraftBeerPi3**](https://github.com/Manuel83/craftbeerpi3 (CBP3)). I am currently writing a [python](https://www.python.org/) plugin for CBP3: [craftbeerpi3ArduinoTempProbes](https://github.com/graetz23/craftbeerpi3ArduinoTempProbes) using [coolPSSM](https://github.com/graetz23/coolPythonSerialStateMachine) as a basis for communicating with arduino; coolPSSM is the python aquivalent that runs on ardiono as a basis [coolASSM](https://github.com/graetz23/coolArduinoSerialStateMachine).
@@ -68,6 +68,9 @@ Everything was coded using:
 have fun :-)
 
 ## ChangeLog
+
+**20200405**
+  - renamed project
 
 **20200404**
   - changed COMMANDs from <7x> to <4x>
@@ -90,4 +93,4 @@ have fun :-)
 **20200331**
   - adding MIT License to all files.
   - adding the README.md for explanation,
-  - setting up reository on [github.com](https://github.com/graetz23/coolArduinoSerialStateTempProbes).
+  - setting up reository on [github.com](https://github.com/graetz23/ArduinoSerialStateTempProbes).
