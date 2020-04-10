@@ -129,7 +129,6 @@ uint8_t ASSTP::processing( uint8_t command ) {
   } else if( command == ASSM_HARD_ANLG2 ) {
     _mementoID = 2; // only used for repeating last request on display
     temp = _atp->readNTCProbe_Celsius( _mementoID );
-    temp = _atp->readNTCProbe_Celsius( 2 );
     writeData( ASSM_HARD_ANLG2_STR, temp, 6, 4 );
   } else if( command == ASSM_HARD_ANLG3 ) {
     _mementoID = 3; // only used for repeating last request on display
