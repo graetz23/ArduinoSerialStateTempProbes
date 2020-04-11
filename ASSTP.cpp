@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20200331
- * version 20200402
+ * version 20200411
  *
  * MIT License
  *
@@ -39,9 +39,6 @@
 LiquidCrystal_I2C lcd(0x27,16,2);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 ASSTP::ASSTP( void ) {
-  //_state = ASSM_STATE_IDLE; // initial STATE is IDLE due to not reacting
-  //_command = ASSM_CMD_NULL; // set COMMAND to NO (NULL) COMMAND
-  //_helper = new ASSM_HELPER( ); // use internal helper ..
   _atp = new ATP( );
 } // method
 
@@ -70,7 +67,6 @@ void ASSTP::setup( void ) {
 } // method
 
 void ASSTP::displayProbe( int id ) {
-  // double probeAx = _atp->readNTCProbe( id );
   double tempAx = _atp->readNTCProbe_Celsius( id );
   String id_str = "";
   if ( id == 0 ) {
@@ -170,9 +166,8 @@ uint8_t ASSTP::idle( uint8_t command ) {
 
   _mementoID = 0; // A0; mmeber only used for having nice displaying ..
 
-  // displayProbe( _mementoID ); // while idle
-
-  processing( command ); // let arduino in IDLE also respond to sensor request
+  displayProbe( _mementoID ); // while idle
+  // processing( command ); // let arduino in IDLE also respond to sensor request
 
   return next_command;
 
@@ -184,10 +179,7 @@ uint8_t ASSTP::runMODE1( uint8_t command ) {
 
   processing( command ); // does all the job of using coolATCP ..
 
-  // if( command != _command )
-  //   lcd.clear( ); // quick help on changing states ..
-
-  delay(10);
+  delay(10); // to see something on LCD ..
 
   return next_command;
 

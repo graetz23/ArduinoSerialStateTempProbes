@@ -4,7 +4,7 @@
  * Christian
  * graetz23@gmail.com
  * created 20200331
- * version 20200402
+ * version 20200411
  *
  * MIT License
  *
@@ -84,11 +84,11 @@ private:
 
   ATP* _atp; // temperature probes
 
-  // some extra for visualization via I2C 20x2 LCD
+  // some extra for visualization via I2C 26x2 or 20x4 LCD
 
   /*!
    * \brief display probes value and celsius by given ID
-   * on some I2C 20x2 LCD display ..
+   * on some I2C 16x2 or 20x4 LCD display ..
    */
   void displayProbe( int id );
 
@@ -96,7 +96,7 @@ private:
 
   /*!
    * \brief display error message while in error state
-   * on some I2C 20x2 LCD display ..
+   * on some I2C 16x2 or 20x4 LCD display ..
    */
   void displayError( ); // while error
 

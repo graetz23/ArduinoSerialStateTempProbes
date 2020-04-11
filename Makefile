@@ -4,8 +4,9 @@
 # Christian
 # graetz23@gmail.com
 # created 20191222
-# version 20200405
+# version 20200411
 
+# --- UNO
 # BOARD_TAG    = uno
 # BOARD_SUB    = atmega328p
 # include $(ARDUINO_DIR)/Arduino.mk

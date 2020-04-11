@@ -30,9 +30,9 @@ I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**
 
 ![ASSTP PCB](./ASSTP_PCB.png)
 
-It is keeping _six_ NTC connectors, where five have _cable glands_ for cabled NTC probes and the sixth has solder eyes for an internal NTC probe. There's a 5 mm _heartbeat_ LED for the serial state machine, where one can see the STATEs: constantly on - ERROR, heartbeat - IDLE, and flickering - processing some RUN MODE state currently.
+It is keeping _six_ NTC connectors, where five have _cable glands_ for cabled NTC probes and the sixth has solder eyes for an internal NTC probe. There's a 5 mm _heartbeat_ LED connected to _PIN 13_ (arduino's default / builtin SMD LED) for the serial state machine, where one can see the STATEs: constantly on - ERROR, heartbeat - IDLE, and flickering - processing some RUN MODE state currently.
 
- Additionally theres a regulated power suppler, fed by up 18 V (even 37 V) that allows to regulated the volatage for electronics up to 5.87 V in maximum - to boost some device with 5.2 V to 5.4 V instead receiving 4.8 V from some week usb hub. ;-)
+ Additionally theres a regulated power suppler, fed by up 18 V (even 37 V) that allows to regulated the volatage for electronics up to 5.87 V in maximum - to boost some device with 5.2 V to 5.4 V instead receiving 4.8 V from some weak usb hub.
 
 ### Usage
 Flash arduino, afterwards open a _serial client_, e.g. the _serial monitor (press CTRL+SHFT+m)_ of your arduino IDE. arduino is in STATE: _IDLE_ and waits for retrieving _COMMANDS_ from you. _COMMANDS_ have the syntax: <CMD_ID>; e.g. <2>, <3>, and so on; a listing of _all COMMANDS_ is [here](https://github.com/graetz23/coolArduinoSerialStateMachine#usage). arduino will reply in _IDLE_ to some of these _COMMANDs_; just try for.
