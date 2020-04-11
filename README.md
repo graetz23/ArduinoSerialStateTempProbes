@@ -16,9 +16,13 @@ and extended by _extra serial commands_ to allow for remotely requesting values 
 For building the HEX file, the [arduino Makefile](https://github.com/sudar/Arduino-Makefile) is used. Clone or download / unzip to your system and configure the _Makefile_ to your arduino board and where you have installed _arduino Makefile_ type: _make_. Alternatively you can include all files of this project in your [arduino IDE](https://www.arduino.cc/en/main/software).
 
 ### Hardware
-Wire your NTC probe with a _matching_ (same resistor value as the probe) resistor in series. Wire from the mid (between your probe and your resistor) of this _voltage divider_ to an _analog_ input of your arduino. Wire the _5 V_ (not system's volatage - there are two _5 V_ voltage sources) and GND to the ends of your _voltage divider_.
+Wire your NTC probe with a _matching_ (same resistor value as the probe) resistor in series; I used _10k NTC_, so _10k Ohm_. Wire from the mid (between your probe and your resistor) of this _voltage divider_ to an _analog_ input of your arduino; e.g. _A0_. Wire the _5 V_ system's volatage and _GND_ to the ends of your _voltage divider_; one end is the selected resistor, the other the end of the NTC probe; done.
 
-However there are several public _posts_, _blogs_, and _vlogs_ on internet showing a schematic wiring diagram; _try searching_ for: _NTC arduino_ or _PTC arduino_.
+Here is some circuit:
+
+![ASSTP PCB](./ASSTP_CIRCUIT.png)
+
+However there are several public _posts_, _blogs_, and _vlogs_ on internet showing schematic wiring diagram for breadboards; _try searching_ for: _NTC arduino_; do not get iritated, the NTC lowers its resistance when heating up, so it is connected to _5 V_, while runnig this code. 
 
 I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**. The current version is:
 
