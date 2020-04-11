@@ -22,15 +22,15 @@ Here is some circuit:
 
 ![ASSTP PCB](./ASSTP_CIRCUIT.png)
 
-However there are several public _posts_, _blogs_, and _vlogs_ on internet showing schematic wiring diagram for breadboards; _try searching_ for: _NTC arduino_; do not get iritated, the NTC lowers its resistance when heating up, so it is connected to _5 V_, while runnig this code. 
+However there are several public _posts_, _blogs_, and _vlogs_ on internet showing schematic wiring diagram for breadboards; _try searching_ for: _NTC arduino_; do not get iritated, the NTC lowers its resistance when heating up, so it is connected to _5 V_, while runnig this code.
 
-I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**. The current version is:
+I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**. It is in version:
 
 - **v1** - prototype shield; to be soldered and tested / bug fixed.
 
 ![ASSTP PCB](./ASSTP_PCB.png)
 
-I it keeping _six_ NTC, where five have _cable glands_ for cabled NTC probes and the sixth has solder eyes for an internal NTC probe. It has a 5 mm _heartbeat_ LED for the serial state machine, where one can see the state of the machine: constantly on - ERROR, heartbeat - IDLE, and flickering - processing some RUN MODE state.
+It is keeping _six_ NTC connectors, where five have _cable glands_ for cabled NTC probes and the sixth has solder eyes for an internal NTC probe. There's a 5 mm _heartbeat_ LED for the serial state machine, where one can see the STATEs: constantly on - ERROR, heartbeat - IDLE, and flickering - processing some RUN MODE state currently.
 
  Additionally theres a regulated power suppler, fed by up 18 V (even 37 V) that allows to regulated the volatage for electronics up to 5.87 V in maximum - to boost some device with 5.2 V to 5.4 V instead receiving 4.8 V from some week usb hub. ;-)
 
