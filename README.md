@@ -16,9 +16,17 @@ and extended by _extra serial commands_ to allow for remotely requesting values 
 For building the HEX file, the [arduino Makefile](https://github.com/sudar/Arduino-Makefile) is used. Clone or download / unzip to your system and configure the _Makefile_ to your arduino board and where you have installed _arduino Makefile_ type: _make_. Alternatively you can include all files of this project in your [arduino IDE](https://www.arduino.cc/en/main/software).
 
 ### Hardware
-Wire your NTC probe with a _matching_ (same resistor value as the probe) resistor in series. Wire from the mid (between your probe and your resistor) of this _voltage divider_ to an _ananlog_ input of your arduino. Wire the _5 V_ (not system's volatage - there are two _5 V_ voltage sources) and GND to the ends of your _voltage divider_.
+Wire your NTC probe with a _matching_ (same resistor value as the probe) resistor in series. Wire from the mid (between your probe and your resistor) of this _voltage divider_ to an _analog_ input of your arduino. Wire the _5 V_ (not system's volatage - there are two _5 V_ voltage sources) and GND to the ends of your _voltage divider_.
 
 However there are several public _posts_, _blogs_, and _vlogs_ on internet showing a schematic wiring diagram; _try searching_ for: _NTC arduino_ or _PTC arduino_.
+
+I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**.
+
+![photo of my ASSTP test bench](./ASSTP_PCB.jpg)
+
+I it keeping _six_ NTC, where five have _cable glands_ for cabled NTC probes and the sixth has solder eyes for an internal NTC probe. It has a 5 mm _heartbeat_ LED for the serial state machine, where one can see the state of the machine: constantly on - ERROR, heartbeat - IDLE, and flickering - processing some RUN MODE state.
+
+ Additionally theres a regulated power suppler, fed by up 18 V (even 37 V) that allows to regulated the volatage for electronics up to 5.87 V in maximum - to boost some device with 5.2 V to 5.4 V instead receiving 4.8 V from some week usb hub. ;-)
 
 ### Usage
 Flash arduino, afterwards open a _serial client_, e.g. the _serial monitor (press CTRL+SHFT+m)_ of your arduino IDE. arduino is in STATE: _IDLE_ and waits for retrieving _COMMANDS_ from you. _COMMANDS_ have the syntax: <CMD_ID>; e.g. <2>, <3>, and so on; a listing of _all COMMANDS_ is [here](https://github.com/graetz23/coolArduinoSerialStateMachine#usage). arduino will reply in _IDLE_ to some of these _COMMANDs_; just try for.

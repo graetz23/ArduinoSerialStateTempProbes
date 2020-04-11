@@ -407,7 +407,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_IDLNG: // IDLE around, and around, and arountthe world
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_heartBeat( 800 ); // 60 bpm heartbeat; 200 blink + 800 wait
+        led_heartBeat( 100 ); // 60 bpm heartbeat; 200 blink + 800 wait
       } // if
       next_command = idle( _command );
     break;
@@ -415,7 +415,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE1: // run MODE 1
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE1( _command );
     break;
@@ -423,7 +423,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE2: // run MODE 2
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE2( _command );
     break;
@@ -431,7 +431,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE3: // run MODE 3
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE3( _command );
     break;
@@ -439,7 +439,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE4: // run MODE 4
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE4( _command );
     break;
@@ -447,7 +447,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE5: // run MODE 5
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE5( _command );
     break;
@@ -455,7 +455,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE6: // run MODE 6
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE6( _command );
     break;
@@ -463,7 +463,7 @@ uint8_t ASSM::process_state( uint8_t state ) {
     case ASSM_STATE_MODE7: // run MODE 7
       next_command = ASSM_CMD_NULL;
       if( ASSM_LED_ACTV ) {
-        led_blink( 10 ); // let flash 20 milliseonds as load indicator ..
+        led_blink( 1 ); // let flash 20 milliseonds as load indicator ..
       } // if
       next_command = runMODE7( _command );
     break;
@@ -486,8 +486,8 @@ void ASSM::led_off(  ) {
 } // method
 
 void ASSM::led_blink( int duration ) {
-  if( duration < 10 ) {
-    duration = 10;
+  if( duration < 1 ) {
+    duration = 1;
   } // if
   led_on( ); // sets the digital pin LED on
   delay( duration );            // waits for a moment in ECU time
@@ -496,12 +496,12 @@ void ASSM::led_blink( int duration ) {
 } // method
 
 void ASSM::led_heartBeat( int interval ) {
-  if( interval < 200 ) {
-    interval = 200; // arduino on steroids; 400 ms equals 150 bpm ..
+  if( interval < 100 ) {
+    interval = 100; // arduino on steroids; 200 ms equals 300 bpm ..
   } // if
-  led_blink( 50 );
-  delay( 100 );
-  led_blink( 50 );
+  led_blink( 25 );
+  delay( 50 );
+  led_blink( 25 );
   delay( interval );
 } // method
 

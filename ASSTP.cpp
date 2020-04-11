@@ -170,9 +170,9 @@ uint8_t ASSTP::idle( uint8_t command ) {
 
   _mementoID = 0; // A0; mmeber only used for having nice displaying ..
 
-  displayProbe( _mementoID ); // while idle
+  // displayProbe( _mementoID ); // while idle
 
-  // processing( command ); // let arduino in IDLE also respond to sensor request
+  processing( command ); // let arduino in IDLE also respond to sensor request
 
   return next_command;
 
@@ -187,7 +187,7 @@ uint8_t ASSTP::runMODE1( uint8_t command ) {
   // if( command != _command )
   //   lcd.clear( ); // quick help on changing states ..
 
-  delay(100);
+  delay(10);
 
   return next_command;
 
