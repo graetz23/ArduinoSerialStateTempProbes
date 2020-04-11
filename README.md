@@ -84,6 +84,7 @@ have fun :-)
 ## ChangeLog
 
 **20200411**
+  - [release of v1.3](https://github.com/graetz23/ArduinoSerialStateTempProbes/releases); due to optimizations,
   - tested this project by [craftbeerpi3ArduinoTempProbes](https://github.com/graetz23/craftbeerpi3ArduinoTempProbes) and optimized it.
   - lowered all delay time:
     - coolASSM is now on 1 ms delay,
