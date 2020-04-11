@@ -20,9 +20,11 @@ Wire your NTC probe with a _matching_ (same resistor value as the probe) resisto
 
 However there are several public _posts_, _blogs_, and _vlogs_ on internet showing a schematic wiring diagram; _try searching_ for: _NTC arduino_ or _PTC arduino_.
 
-I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**.
+I also designed a **PCB prototype shield** for arduino **UNO**, and **leonardo**. The current version is:
 
-![photo of my ASSTP test bench](./ASSTP_PCB.jpg)
+- **v1** - prototype shield; to be soldered and tested / bug fixed.
+
+![ASSTP PCB](./ASSTP_PCB.png)
 
 I it keeping _six_ NTC, where five have _cable glands_ for cabled NTC probes and the sixth has solder eyes for an internal NTC probe. It has a 5 mm _heartbeat_ LED for the serial state machine, where one can see the state of the machine: constantly on - ERROR, heartbeat - IDLE, and flickering - processing some RUN MODE state.
 
