@@ -86,10 +86,10 @@ have fun :-)
 **20200411**
   - tested this project by [craftbeerpi3ArduinoTempProbes](https://github.com/graetz23/craftbeerpi3ArduinoTempProbes) and optimized it.
   - lowered all delay time:
-    - coolASSM is not on 1 ms delay,
+    - coolASSM is now on 1 ms delay,
     - removed the delay in readingSerial totally; seems to be blocking, when reading - no idea, ;-)
   - added PCB screenshot and some read me,
-  - added circuit screenshot and some wiring,
+  - added circuit screenshot and some read me,
 
 **20200405**
   - renamed project
